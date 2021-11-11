@@ -6,8 +6,7 @@ import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 const user = {
   name: "Tom Cook",
   email: "tom@example.com",
-  imageUrl:
-    "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  imageUrl: "avatar-svgrepo-com.svg",
 };
 const navigation = [
   { name: "Overview", href: "#", current: true },
@@ -27,21 +26,19 @@ function classNames(...classes) {
 
 export default function NavBar() {
   return (
-    <Disclosure as="header" className="bg-white shadow">
+    <Disclosure as="header" className="bg-white">
       {({ open }) => (
         <>
           {/* <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:divide-y lg:divide-gray-200 lg:px-8"> */}
           <div className="relative h-16 flex justify-between">
             <div className="relative z-10 px-2 flex lg:px-0">
               <div className="flex-shrink-0 flex items-center">
-                <img
-                  className="block h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                  alt="Workflow"
-                />
+                <a href="/">
+                  <span className="font-bold text-lg"> BBox </span>
+                </a>
               </div>
             </div>
-            <div className="relative z-0 flex-1 px-2 flex items-center justify-center sm:absolute sm:inset-0">
+            {/* <div className="relative z-0 flex-1 px-2 flex items-center justify-center sm:absolute sm:inset-0">
               <div className="w-full sm:max-w-xs">
                 <label htmlFor="search" className="sr-only">
                   Search
@@ -62,7 +59,7 @@ export default function NavBar() {
                   />
                 </div>
               </div>
-            </div>
+            </div> */}
             <div className="relative z-10 flex items-center lg:hidden">
               {/* Mobile menu button */}
               <Disclosure.Button className="rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
