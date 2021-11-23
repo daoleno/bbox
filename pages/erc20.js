@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Web3ReactProvider, useWeb3React } from "@web3-react/core";
 import { getErrorMessage, getLibrary, deployERC20 } from "../lib/web3";
-import Error from "../components/Error";
+import Notify from "../components/Notify";
 import { injected } from "../lib/connectors";
 import { useEagerConnect } from "../lib/hooks";
 
@@ -45,7 +45,7 @@ function Issue() {
 
   return (
     <div className="w-full max-w-xs mx-auto mt-20">
-      {!!error && <Error error={getErrorMessage(error)} />}
+      {!!error && <Notify error={getErrorMessage(error)} />}
       <form>
         <label className="block uppercase text-gray-700 text-center font-bold mb-4">
           Issue ERC20 Token
