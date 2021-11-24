@@ -8,10 +8,10 @@ const files = [
     href: "/erc20",
   },
   {
-    title: "Issue NFT",
+    title: "Issue ERC721",
     bgColor: "bg-red-200",
     source: "doge-computer.png",
-    href: "/",
+    href: "/erc721",
   },
   {
     title: "Upload To IPFS",
