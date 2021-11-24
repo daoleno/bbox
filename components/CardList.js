@@ -16,7 +16,19 @@ const files = [
   {
     title: "Upload To IPFS",
     bgColor: "bg-green-0",
-    source: "ipfs-logo-vector-ice-text.svg",
+    source: "comming.png",
+    href: "/",
+  },
+  {
+    title: "Approve List",
+    bgColor: "bg-green-0",
+    source: "comming.png",
+    href: "/",
+  },
+  {
+    title: "Issue Token On Solana",
+    bgColor: "bg-green-0",
+    source: "comming.png",
     href: "/",
   },
   // More files...
@@ -47,7 +59,7 @@ export default function CardList() {
               </button>
             </Link>
           </div>
-          <p className="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">
+          <p className="mt-2 block text-sm text-center font-medium text-gray-900 truncate pointer-events-none">
             {file.title}
           </p>
         </li>
