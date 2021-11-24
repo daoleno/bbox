@@ -45,7 +45,9 @@ function Issue() {
 
   return (
     <div className="w-full max-w-xs mx-auto mt-20">
-      {!!error && <Notify error={getErrorMessage(error)} />}
+      {!!error && (
+        <Notify key={new Date().getTime()} error={getErrorMessage(error)} />
+      )}
       <form>
         <label className="block uppercase text-gray-700 text-center font-bold mb-4">
           Issue ERC20 Token
