@@ -28,24 +28,28 @@ function Issue() {
     });
   };
 
-  const { library, activate, active, error } = useWeb3React();
+  const { library, activate, active, error, setError } = useWeb3React();
   const [activating, setActivating] = useState(false);
   // handle logic to eagerly connect to the injected ethereum provider, if it exists and has granted access already
   const triedEager = useEagerConnect();
 
-  const handleIssue = (e) => {
+  async function handleIssue(e) {
     e.preventDefault();
     if (active) {
-      deployERC20(library.getSigner(), { ...values });
+      try {
+        await deployERC20(library.getSigner(), { ...values });
+      } catch (e) {
+        setError(e);
+      }
     } else {
       setActivating(true);
       activate(injected);
     }
-  };
+  }
 
   return (
     <div className="w-full max-w-xs mx-auto mt-20">
-      {!!error && (
+      {error && (
         <Notify key={new Date().getTime()} error={getErrorMessage(error)} />
       )}
       <form>
