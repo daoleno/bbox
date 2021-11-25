@@ -21,7 +21,7 @@ export default function Connector() {
       {error && (
         <Notify key={new Date().getTime()} error={getErrorMessage(error)} />
       )}
-      <div className="relative z-10 mt-auto flex items-center">
+      <div className="relative mt-auto flex items-center">
         <button
           type="button"
           onClick={handleActivate}

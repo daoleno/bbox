@@ -10,13 +10,12 @@ export default function Notify({ error, message }) {
     setTimeout(() => {
       setShow(false);
     }, 5000);
-    console.log("error: ", error);
   });
 
   return (
     <div
       aria-live="assertive"
-      className="fixed inset-0 flex items-start px-4 py-12 pointer-events-none"
+      className="fixed inset-0 flex items-start px-4 py-12 pointer-events-none z-10"
     >
       <div className="w-full flex flex-col items-center space-y-4">
         {/* Notification panel, dynamically insert this into the live region when it needs to be displayed */}

@@ -48,7 +48,7 @@ function Issue() {
   }
 
   return (
-    <div className="w-full max-w-xs mx-auto mt-20">
+    <div className="w-full max-w-xs mx-auto sm:mt-20">
       {error && (
         <Notify key={new Date().getTime()} error={getErrorMessage(error)} />
       )}
