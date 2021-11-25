@@ -9,7 +9,7 @@ export default function Notify({ error, message }) {
   useEffect(() => {
     setTimeout(() => {
       setShow(false);
-    }, 5000);
+    }, 3000);
   });
 
   return (

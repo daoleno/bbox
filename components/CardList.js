@@ -14,10 +14,10 @@ const files = [
     href: "/erc721",
   },
   {
-    title: "Upload To IPFS",
-    bgColor: "bg-green-0",
-    source: "comming.png",
-    href: "/",
+    title: "NFT.STORAGE",
+    bgColor: "bg-red-500",
+    source: "logo-nft.storage.png",
+    href: "/nftstorage",
   },
   {
     title: "Approve List",
