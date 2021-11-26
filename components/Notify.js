@@ -47,8 +47,8 @@ export default function Notify({ error, message }) {
                 </div>
                 <div className="ml-3 w-0 flex-1 pt-0.5">
                   {/* <p className="text-sm font-medium text-gray-900">
-                      {error ? error : message}
-                    </p> */}
+                    {error ? error : message}
+                  </p> */}
                   <p className="mt-1 text-sm text-gray-500">
                     {error ? error : message}
                   </p>

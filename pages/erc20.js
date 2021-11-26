@@ -38,8 +38,8 @@ function Issue() {
     if (active) {
       try {
         await deployERC20(library.getSigner(), { ...values });
-      } catch (e) {
-        setError(e);
+      } catch (error) {
+        setError(error);
       }
     } else {
       setActivating(true);
