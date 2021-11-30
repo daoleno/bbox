@@ -20,6 +20,12 @@ const files = [
     href: "/nftstorage",
   },
   {
+    title: "NFT Gallery",
+    bgColor: "bg-red-0",
+    source: "nftgallery.png",
+    href: "/nftgallery",
+  },
+  {
     title: "Approve List",
     bgColor: "bg-green-0",
     source: "comming.png",
