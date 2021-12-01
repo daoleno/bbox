@@ -47,7 +47,7 @@ export default function CardList() {
       className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-3 xl:gap-x-36"
     >
       {files.map((file) => (
-        <li key={file.source} className="relative">
+        <li key={file.title} className="relative">
           <div
             className={`group block w-full aspect-w-10 aspect-h-6 rounded-lg ${file.bgColor} focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden`}
           >
