@@ -21,7 +21,7 @@ const files = [
   },
   {
     title: "NFT Gallery",
-    bgColor: "bg-red-0",
+    bgColor: "bg-purple-300",
     source: "nftgallery.png",
     href: "/nftgallery",
   },
