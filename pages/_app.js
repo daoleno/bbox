@@ -3,6 +3,7 @@ import Layout from "./layout";
 import { useRouter } from "next/router";
 import * as gtag from "../lib/gtag";
 import Script from "next/script";
+import { useEffect } from "react";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
