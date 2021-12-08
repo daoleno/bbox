@@ -52,10 +52,11 @@ export default function NFTGallery() {
   const { search, token_id } = query;
   const { totalSupply, error: totalSupplyError } = useTotalSupply(search);
   const [fetchIndex, setFetchIndex] = useState(0);
+  const [searchValue, setSearchValue] = useState(search);
 
   function handleFetch(e) {
     e.preventDefault();
-    replace(`/nftgallery?search=${searchVaule}`);
+    replace(`/nftgallery?search=${searchValue}`);
   }
 
   useEffect(() => {
@@ -90,7 +91,7 @@ export default function NFTGallery() {
                 className="block w-full bg-white border border-gray-300 rounded-md py-2 pl-10 pr-3 text-sm placeholder-gray-500 focus:outline-none focus:text-gray-900 focus:placeholder-gray-400 focus:ring-1 focus:ring-gray-900 focus:border-gray-900 sm:text-sm"
                 placeholder="NFT Contract Address"
                 type="search"
-                onInput={(e) => setSearchVaule(e.target.value)}
+                onInput={(e) => setSearchValue(e.target.value)}
               />
               {/* get random emojis */}
               <div className="text-center my-auto pl-3 text-3xl">
@@ -185,6 +186,7 @@ function NFTCard({ address, index }) {
   if (isLoading)
     return (
       <>
+        {error && <Notify error={getErrorMessage(error)} />}
         <button className="animate-pulse group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-200 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden"></button>
         <div className="flex justify-around mt-2 text-sm font-medium text-gray-900">
           ...
@@ -194,7 +196,6 @@ function NFTCard({ address, index }) {
 
   return (
     <>
-      {error && <Notify error={getErrorMessage(error)} />}
       {nft && (
         <>
           <button className="group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-200 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
