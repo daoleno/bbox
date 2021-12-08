@@ -137,7 +137,17 @@ export default function NFTGallery() {
             />
           </div>
         )}
-        {search && <NFTCardPage address={search} index={fetchIndex} />}
+        {search && (
+          <>
+            <div className="hidden">
+              <NFTCardPage
+                address={search}
+                index={fetchIndex + onePageNumber}
+              />
+            </div>
+            <NFTCardPage address={search} index={fetchIndex} />
+          </>
+        )}
         <Pagination
           searchValue={search}
           fetchIndex={fetchIndex}
