@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const files = [
   {
@@ -10,31 +11,43 @@ const files = [
   {
     title: "Issue ERC721",
     bgColor: "bg-red-200",
-    source: "doge-computer.png",
+    source: "/doge-computer.png",
     href: "/erc721",
   },
   {
     title: "NFT.STORAGE",
     bgColor: "bg-red-500",
-    source: "logo-nft.storage.png",
+    source: "/logo-nft.storage.png",
     href: "/nftstorage",
   },
   {
-    title: "NFT Gallery",
+    title: "Ethereum NFT Gallery",
     bgColor: "bg-purple-300",
-    source: "nftgallery.png",
-    href: "/nftgallery",
+    source: "/alpha-girls.png",
+    href: "/nftgallery/eth",
+  },
+  {
+    title: "Polygon NFT Gallery",
+    bgColor: "bg-amber-600",
+    source: "/w3w.jpeg",
+    href: "/nftgallery/polygon",
+  },
+  {
+    title: "BSC NFT Gallery",
+    bgColor: "bg-red-300",
+    source: "/bsc-nftgallery.png",
+    href: "/nftgallery/bsc",
   },
   {
     title: "Approve List",
     bgColor: "bg-green-0",
-    source: "comming.png",
+    source: "/comming.png",
     href: "/",
   },
   {
     title: "Issue Token On Solana",
     bgColor: "bg-green-0",
-    source: "comming.png",
+    source: "/comming.png",
     href: "/",
   },
   // More files...
@@ -48,23 +61,18 @@ export default function CardList() {
     >
       {files.map((file) => (
         <li key={file.title} className="relative">
-          <div
-            className={`group block w-full aspect-w-10 aspect-h-6 rounded-lg ${file.bgColor} focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden`}
-          >
-            <img
-              src={file.source}
-              alt={file.title}
-              className="object-cover pointer-events-none group-hover:opacity-75"
-            />
-            <Link href={file.href}>
-              <button
-                type="button"
-                className="absolute inset-0 focus:outline-none"
-              >
-                <span className="sr-only">View details for {file.title}</span>
-              </button>
-            </Link>
-          </div>
+          <Link href={file.href}>
+            <button
+              className={`group block w-full aspect-w-10 aspect-h-6 rounded-lg ${file.bgColor} focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden`}
+            >
+              <Image
+                src={file.source}
+                alt={file.title}
+                className="object-cover pointer-events-none group-hover:opacity-75"
+                layout="fill"
+              />
+            </button>
+          </Link>
           <p className="mt-2 block text-sm text-center font-medium text-gray-900 truncate pointer-events-none">
             {file.title}
           </p>
