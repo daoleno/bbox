@@ -1,44 +1,16 @@
 import "tailwindcss/tailwind.css";
 import Layout from "./layout";
-import { useRouter } from "next/router";
-import * as gtag from "../lib/gtag";
 import Script from "next/script";
-import { useEffect } from "react";
 
 function MyApp({ Component, pageProps }) {
-  const router = useRouter();
-  useEffect(() => {
-    const handleRouteChange = (url) => {
-      gtag.pageview(url);
-    };
-    router.events.on("routeChangeComplete", handleRouteChange);
-    return () => {
-      router.events.off("routeChangeComplete", handleRouteChange);
-    };
-  }, [router.events]);
-
   return (
     <Layout>
-      {/* Global Site Tag (gtag.js) - Google Analytics */}
       <Script
-        strategy="afterInteractive"
-        src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
-      />
-      <Script
-        id="gtag-init"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', '${gtag.GA_TRACKING_ID}', {
-              page_path: window.location.pathname,
-            });
-          `,
-        }}
-      />
+        async
+        defer
+        data-website-id="c93cfc77-d9e8-46d0-b07e-7061a2602e00"
+        src="https://bbox-umami.herokuapp.com/umami.js"
+      ></Script>
 
       <Component {...pageProps} />
     </Layout>
