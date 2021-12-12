@@ -28,21 +28,21 @@ const files = [
   },
   {
     title: "Polygon NFT Gallery",
-    bgColor: "bg-amber-600",
+    bgColor: "bg-Stone-700",
     source: "/w3w.jpeg",
     href: "/nftgallery/polygon",
   },
   {
     title: "BSC NFT Gallery",
-    bgColor: "bg-red-300",
+    bgColor: "bg-red-600",
     source: "/bsc-nftgallery.png",
     href: "/nftgallery/bsc",
   },
   {
-    title: "Approve List",
-    bgColor: "bg-green-0",
-    source: "/comming.png",
-    href: "/",
+    title: "Approved Contracts",
+    bgColor: "bg-white",
+    source: "/approved.png",
+    href: "/approved",
   },
   {
     title: "Issue Token On Solana",
