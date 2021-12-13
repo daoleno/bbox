@@ -1,34 +1,19 @@
 import ChainLogo from "../components/ChainLogo";
 import { SearchIcon } from "@heroicons/react/solid";
-import Link from "next/link";
 import { useState } from "react";
-import { getProvider } from "../lib/web3";
-import useSWR from "swr";
-import { useRouter } from "next/dist/client/router";
-import { useEventLogs } from "../lib/hooks";
+import { getProvider, getErrorMessage } from "../lib/web3";
+import { useRouter } from "next/router";
+import { useTxs, useApprovedTx } from "../lib/hooks";
+import Notify from "../components/Notify";
 
-// const transactions = [
-//   {
-//     hash: "0x1e80793a...fe39b",
-//     to: "0xa0c68c638235ee32657e8f720a23cec1bfc77c77",
-//     amount: "100000",
-//     date: "Dec-12-2021 06:57:53 AM +UTC",
-//   },
-//   {
-//     hash: "0x1e80793a...8fe39b",
-//     to: "0xa0c68c638235ee32657e8f720a23cec1bfc77c77",
-//     amount: "32432",
-//     date: "Dec-12-2021 06:57:53 AM +UTC",
-//   },
-// ];
+const etherscanTxUrl = "https://etherscan.io/tx/";
+const etherscanAddressUrl = "https://etherscan.io/address/";
 
 export default function Approved() {
   const { query, replace, isReady } = useRouter();
   const { search } = query;
   const [address, setAddress] = useState(search);
-  const { eventLogs, isLoading, error } = useEventLogs(search, "Approval");
-  console.log("approveTxs", eventLogs);
-  console.log("isLoading", isLoading);
+  const { txs, isLoading, error } = useTxs(search);
 
   function handleFetch(e) {
     e.preventDefault();
@@ -37,6 +22,7 @@ export default function Approved() {
 
   return (
     <>
+      {error && <Notify error={getErrorMessage(error)} />}
       <form
         className="relative z-0 flex-1 px-2 py-4 flex flex-wrap items-center justify-center"
         onSubmit={handleFetch}
@@ -100,41 +86,87 @@ export default function Approved() {
                     </th>
                   </tr>
                 </thead>
-                <tbody>
-                  {eventLogs &&
-                    eventLogs.map((tx, txIdx) => (
-                      <tr
-                        key={tx.transactionHash}
-                        className={txIdx % 2 === 0 ? "bg-white" : "bg-gray-50"}
-                      >
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                          {tx.transactionHash}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          {tx.decode.spender}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          {tx.amount}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          {tx.blockNumber}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                          <a
-                            href="#"
-                            className="text-indigo-600 hover:text-indigo-900"
-                          >
-                            Revoke
-                          </a>
-                        </td>
-                      </tr>
-                    ))}
-                </tbody>
+                {txs && <TxItems txs={txs} owner={search} />}
               </table>
             </div>
           </div>
         </div>
       </div>
     </>
+  );
+}
+
+function TxItems({ txs, owner }) {
+  const provider = getProvider("eth");
+  const txitems = [];
+  for (let i = 0; i < txs.length; i++) {
+    txitems.push(
+      <TxItem
+        provider={provider}
+        txHash={txs[i].hash}
+        timestamp={txs[i].timeStamp}
+        txIdx={i}
+        owner={owner}
+        key={i}
+      />
+    );
+  }
+
+  return <tbody>{txitems}</tbody>;
+}
+
+function TxItem({ provider, txHash, timestamp, txIdx, owner }) {
+  const { data: tx, error } = useApprovedTx(provider, txHash, owner);
+  if (error) {
+    return <Notify error={getErrorMessage(error)} />;
+  }
+  if (tx && tx.decode && tx.decode.length > 0) {
+    console.log("tx", tx, "txHash", txHash, "length", tx.decode.length);
+
+    const items = tx.decode.map((log, i) => (
+      <LogItem tx={tx} txIdx={txIdx} log={log} key={i} timestamp={timestamp} />
+    ));
+    return <>{items}</>;
+  }
+
+  return <></>;
+}
+
+function LogItem({ tx, txIdx, log, timestamp }) {
+  return (
+    <tr>
+      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-blue-400 hover:text-blue-600">
+        <a href={etherscanTxUrl + tx.transactionHash} target="_blank">
+          {tx.transactionHash.substring(0, 18) + "..."}
+        </a>
+      </td>
+      <td className="px-6 py-4 whitespace-nowrap text-sm text-blue-400 hover:text-blue-600">
+        <a href={etherscanAddressUrl + log.decode.spender} target="_blank">
+          {log.decode.spender}
+        </a>
+      </td>
+      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+        {/* if bigint value larger than 2^256-1, show unlimited */}
+        {log.decode.value > BigInt(0xffffffffffffffffffffffffffffffff)
+          ? "unlimited"
+          : log.decode.value.toString()}{" "}
+        <a
+          href={etherscanAddressUrl + log.address}
+          target="_blank"
+          className="text-blue-400 hover:text-blue-600"
+        >
+          {log.address}
+        </a>
+      </td>
+      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+        {/* show humanable date from timestamp */}
+        {timestamp ? new Date(timestamp * 1000).toLocaleString() : ""}
+      </td>
+      <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+        <a href="#" className="text-indigo-600 hover:text-indigo-900">
+          Revoke
+        </a>
+      </td>
+    </tr>
   );
 }

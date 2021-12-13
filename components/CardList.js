@@ -28,7 +28,7 @@ const files = [
   },
   {
     title: "Polygon NFT Gallery",
-    bgColor: "bg-Stone-700",
+    bgColor: "bg-gray-200",
     source: "/w3w.jpeg",
     href: "/nftgallery/polygon",
   },

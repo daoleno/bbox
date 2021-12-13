@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { getErrorMessage, isVideo, toHttp } from "../lib/web3";
 import { SearchIcon } from "@heroicons/react/solid";
-import { useRouter } from "next/dist/client/router";
+import { useRouter } from "next/router";
 import { tokensNFTETH, tokensNFTBSC, tokensPolygon } from "../lib/tokensNFT";
 import Link from "next/link";
 import PopOver from "./Popover";
