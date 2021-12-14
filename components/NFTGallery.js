@@ -89,7 +89,7 @@ export default function NFTGallery({ chain }) {
           className="relative z-0 flex-1 px-2 py-4 flex flex-wrap items-center justify-center"
           onSubmit={handleFetch}
         >
-          <ChainLogo chain={chain} />
+          <ChainLogo chain={chain} href={`/nftgallery/${chain}`} />
           <div className="max-w-xs w-full">
             <label htmlFor="search" className="sr-only">
               Search

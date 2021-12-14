@@ -39,7 +39,7 @@ const files = [
     href: "/nftgallery/bsc",
   },
   {
-    title: "Approved Contracts",
+    title: "Token Approval",
     bgColor: "bg-white",
     source: "/approved.png",
     href: "/approved",

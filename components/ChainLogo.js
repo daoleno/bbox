@@ -1,8 +1,8 @@
-export default function ChainLogo({ chain }) {
+export default function ChainLogo({ chain, href }) {
   switch (chain) {
     case "eth":
       return (
-        <a href={`/nftgallery/${chain}`}>
+        <a href={href}>
           <img
             className="w-48"
             src="/ethereum-logo-landscape-purple-white.jpg"
@@ -12,14 +12,14 @@ export default function ChainLogo({ chain }) {
       );
     case "polygon":
       return (
-        <a href={`/nftgallery/${chain}`}>
+        <a href={href}>
           <svg
             className="w-28 mr-3 mb-3 md:mb-0 lg:mb-0 "
             viewBox="0 0 1024 225"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <g clip-path="url(#clip0)">
+            <g clipPath="url(#clip0)">
               <path
                 d="M400.611 71.671C406.893 75.4685 412.209 80.69 415.591 87.8103C419.457 94.9305 421.39 103.475 421.39 112.969C421.39 122.462 419.457 130.532 415.108 137.652C411.242 144.772 405.443 149.994 398.195 153.317C390.946 157.114 382.247 159.013 373.066 159.013C367.75 159.013 362.917 158.063 358.085 156.165C353.252 154.741 348.903 151.893 345.521 148.57V197.937H317.492V67.8735H341.655L344.071 78.3166C354.702 69.7723 366.3 65.5001 378.381 65.5001C386.597 65.5001 394.329 67.3989 400.611 71.671ZM385.147 130.532C389.979 126.26 392.396 120.563 392.396 113.443C392.396 106.323 389.979 100.627 385.63 95.8799C381.281 91.133 375.482 89.2343 369.2 89.2343C363.884 89.2343 359.051 90.1837 355.185 92.5571C351.32 94.4558 348.42 97.7786 346.004 102.051V123.412C347.454 127.684 350.353 131.006 353.736 133.38C357.602 135.753 361.951 137.177 367.267 137.177C374.515 137.177 380.314 134.804 385.147 130.532Z"
                 fill="black"
@@ -63,7 +63,7 @@ export default function ChainLogo({ chain }) {
       );
     case "bsc":
       return (
-        <a href={`/nftgallery/${chain}`}>
+        <a href={href}>
           <img className="w-48" src="/bsc.webp" alt="bsc" />
         </a>
       );
