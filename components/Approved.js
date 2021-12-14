@@ -1,18 +1,21 @@
-import ChainLogo from "../components/ChainLogo";
+import ChainLogo from "./ChainLogo";
 import { SearchIcon } from "@heroicons/react/solid";
 import { useState } from "react";
-import { decodeApproveInput } from "../lib/web3";
+import {
+  decodeApproveInput,
+  getErrorMessage,
+  getScanAddressUrl,
+  getScanTxUrl,
+} from "../lib/web3";
 import { useRouter } from "next/router";
 import { useTxs, useTokenSymbol } from "../lib/hooks";
+// import Notify from "./Notify";
 
-const etherscanTxUrl = "https://etherscan.io/tx/";
-const etherscanAddressUrl = "https://etherscan.io/address/";
-
-export default function Approved() {
+export default function Approved({ chain }) {
   const { query, replace } = useRouter();
   const { search } = query;
   const [address, setAddress] = useState(search);
-  const { txs, error } = useTxs(search);
+  const { txs, error } = useTxs(chain, search);
 
   function handleFetch(e) {
     e.preventDefault();
@@ -26,7 +29,7 @@ export default function Approved() {
         className="relative z-0 flex-1 px-2 py-4 flex flex-wrap items-center justify-center"
         onSubmit={handleFetch}
       >
-        <ChainLogo chain="eth" href="/approved" />
+        <ChainLogo chain={chain} href={`/approved/${chain}`} />
         <div className="max-w-xs w-full">
           <label htmlFor="search" className="sr-only">
             Search
@@ -49,7 +52,7 @@ export default function Approved() {
           </div>
         </div>
       </form>
-      {txs.length == 0 && (
+      {txs.length == 0 && !search && (
         /* This example requires Tailwind CSS v2.0+ */
         <div className="sm:rounded-lg flex flex-col">
           <img src="/Wallet_Isometric.svg" alt="approve" className="mx-auto" />
@@ -61,6 +64,17 @@ export default function Approved() {
               <p>Review and revoke your token approvals for any dApp.</p>
             </div>
           </div>
+        </div>
+      )}
+
+      {/* loading */}
+      {txs.length == 0 && search && (
+        <div className="flex justify-center items-center mt-48">
+          <img
+            src="/rocket.png"
+            className="animate-bounce h-32 w-32"
+            alt="loading"
+          />
         </div>
       )}
 
@@ -101,7 +115,7 @@ export default function Approved() {
                       </th>
                     </tr>
                   </thead>
-                  {txs && <TxItems txs={txs} />}
+                  {txs && <TxItems chain={chain} txs={txs} />}
                 </table>
               </div>
             </div>
@@ -112,29 +126,30 @@ export default function Approved() {
   );
 }
 
-function TxItems({ txs }) {
-  const txitems = txs.map((tx, i) => <TxItem tx={tx} key={i} />);
+function TxItems({ chain, txs }) {
+  const txitems = txs
+    .sort((x, y) => y.timeStamp - x.timeStamp)
+    .map((tx, i) => <TxItem chain={chain} tx={tx} key={i} />);
   return <tbody className="bg-white divide-y divide-gray-200">{txitems}</tbody>;
 }
 
-function TxItem({ tx }) {
+function TxItem({ chain, tx }) {
   const decodedInput = decodeApproveInput(tx.input);
-  const { symbol, error } = useTokenSymbol("eth", tx.to);
+  const { symbol, error } = useTokenSymbol(chain, tx.to);
+  const addressUrl = getScanAddressUrl(chain);
+  const txUrl = getScanTxUrl(chain);
 
   return (
     <>
       {!error && decodedInput && (
         <tr>
           <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-blue-400 hover:text-blue-600">
-            <a href={etherscanTxUrl + tx.hash} target="_blank" title={tx.hash}>
+            <a href={txUrl + tx.hash} target="_blank" title={tx.hash}>
               {tx.hash.substring(0, 18) + "..."}
             </a>
           </td>
           <td className="px-6 py-4 whitespace-nowrap text-sm text-blue-400 hover:text-blue-600">
-            <a
-              href={etherscanAddressUrl + decodedInput.spender}
-              target="_blank"
-            >
+            <a href={addressUrl + decodedInput.spender} target="_blank">
               {decodedInput.spender}
             </a>
           </td>
@@ -144,7 +159,7 @@ function TxItem({ tx }) {
               ? "unlimited"
               : decodedInput.amount.toString()}{" "}
             <a
-              href={etherscanAddressUrl + tx.to}
+              href={addressUrl + tx.to}
               target="_blank"
               className="text-blue-400 hover:text-blue-600"
               title={tx.to}
@@ -157,7 +172,7 @@ function TxItem({ tx }) {
           </td>
           <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
             <a
-              href={etherscanAddressUrl + tx.to + "#writeContract"}
+              href={addressUrl + tx.to + "#writeContract"}
               className="text-indigo-600 hover:text-indigo-900"
               target="_blank"
               title="appove spender 0 amount to revoke approval"

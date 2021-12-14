@@ -27,22 +27,34 @@ const files = [
     href: "/nftgallery/eth",
   },
   {
-    title: "Polygon NFT Gallery",
-    bgColor: "bg-gray-200",
-    source: "/w3w.jpeg",
-    href: "/nftgallery/polygon",
-  },
-  {
     title: "BSC NFT Gallery",
     bgColor: "bg-red-600",
     source: "/bsc-nftgallery.png",
     href: "/nftgallery/bsc",
   },
   {
-    title: "Token Approval",
-    bgColor: "bg-white",
+    title: "Polygon NFT Gallery",
+    bgColor: "bg-gray-200",
+    source: "/w3w.jpeg",
+    href: "/nftgallery/polygon",
+  },
+  {
+    title: "Ethereum Token Approval",
+    bgColor: "bg-blue-500",
     source: "/approved.png",
-    href: "/approved",
+    href: "/approved/eth",
+  },
+  {
+    title: "BSC Token Approval",
+    bgColor: "bg-yellow-500",
+    source: "/approved.png",
+    href: "/approved/bsc",
+  },
+  {
+    title: "Polygon Token Approval",
+    bgColor: "bg-purple-500",
+    source: "/approved.png",
+    href: "/approved/polygon",
   },
   {
     title: "Issue Token On Solana",
