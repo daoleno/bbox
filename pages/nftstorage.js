@@ -55,7 +55,9 @@ export default function NFTStorage() {
       {error && (
         <Notify key={new Date().getTime()} error={getErrorMessage(error)} />
       )}
-
+      <label className="block uppercase text-gray-700 text-center font-bold mb-4 lg:mt-16">
+        NFT Storage
+      </label>
       <div className="flex flex-wrap justify-center sm:mt-20">
         <div className="flex flex-col px-3 mb-6 md:mb-0 justify-center">
           <div className="px-3 mb-6 md:mb-0">
@@ -66,11 +68,10 @@ export default function NFTStorage() {
               Name
             </label>
             <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-memo"
+              className="appearance-none block w-full text-gray-700 border border-gray-200 rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              id="grid-name"
               type="text"
               name="name"
-              placeholder="name"
               onChange={handleChange}
             />
           </div>
@@ -79,11 +80,10 @@ export default function NFTStorage() {
               Description
             </label>
             <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              className="appearance-none block w-full text-gray-700 border border-gray-200 rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-description"
               type="text"
               name="description"
-              placeholder="description"
               onChange={handleChange}
             />
           </div>
@@ -151,11 +151,9 @@ export default function NFTStorage() {
                 >
                   Metadata URL
                 </label>
-                <input
-                  className="appearance-none bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                  value={metadataURL}
-                  readOnly
-                />
+                <label className="appearance-none text-gray-700  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                  {metadataURL}
+                </label>
               </div>
             </div>
           </div>

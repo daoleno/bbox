@@ -64,7 +64,7 @@ function Issue() {
               Token Name
             </label>
             <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              className="appearance-none block w-full text-gray-700 border border-gray-200 rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-memo"
               type="text"
               name="name"
@@ -80,7 +80,7 @@ function Issue() {
               Token Symbol
             </label>
             <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              className="appearance-none block w-full text-gray-700 border border-gray-200 rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-memo"
               type="text"
               name="symbol"
@@ -91,7 +91,7 @@ function Issue() {
         </div>
         <div className="flex justify-center">
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline"
             onClick={handleIssue}
           >
             {active
