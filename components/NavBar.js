@@ -7,13 +7,13 @@ export default function NavBar() {
   return (
     <Disclosure as="header" className="bg-white">
       <div className="relative py-6 sm:px-6 flex justify-between">
-        <div className="relative mt-auto px-2 flex lg:px-0">
-          <div className="flex-shrink-0 flex items-center">
-            <a href="/">
-              <span className="font-bold text-lg"> BBox </span>
-            </a>
-          </div>
-        </div>
+        <a href="/">
+          <img
+            className="block h-12 w-auto"
+            src="/BBox-logos_black.png"
+            alt="BBox"
+          />
+        </a>
         <Web3ReactProvider getLibrary={getLibrary}>
           <Connector />
         </Web3ReactProvider>
