@@ -57,6 +57,12 @@ const files = [
     href: "/approved/polygon",
   },
   {
+    title: "Gas Now",
+    bgColor: "bg-blue-300",
+    source: "/transistor-green-energy.png",
+    href: "/gasnow",
+  },
+  {
     title: "Issue Token On Solana",
     bgColor: "bg-green-0",
     source: "/comming.png",

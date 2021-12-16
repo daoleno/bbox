@@ -3,6 +3,7 @@ import { SearchIcon } from "@heroicons/react/solid";
 import { useState } from "react";
 import {
   decodeApproveInput,
+  getChainOpts,
   getErrorMessage,
   getScanAddressUrl,
   getScanTxUrl,
@@ -29,7 +30,9 @@ export default function Approved({ chain }) {
         className="relative z-0 flex-1 px-2 py-4 flex flex-wrap items-center justify-center"
         onSubmit={handleFetch}
       >
-        <ChainLogo chain={chain} href={`/approved/${chain}`} />
+        <a href={`/approved/${chain}`} className="lg:mb-0 md:mb-0 mb-3">
+          <ChainLogo chain={chain} />
+        </a>
         <div className="max-w-xs w-full">
           <label htmlFor="search" className="sr-only">
             Search
@@ -55,7 +58,7 @@ export default function Approved({ chain }) {
       {txs.length == 0 && !search && (
         /* This example requires Tailwind CSS v2.0+ */
         <div className="sm:rounded-lg flex flex-col">
-          <img src="/Wallet_Isometric.svg" alt="approve" className="mx-auto" />
+          <img src="/wallet.svg" alt="approve" className="mx-auto" />
           <div className="px-4 py-5 sm:p-6  text-center">
             <h3 className="text-lg leading-6 font-medium text-gray-900 ">
               Revoke Token Approvals

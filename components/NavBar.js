@@ -3,17 +3,6 @@ import Connector from "./Connector";
 import { Web3ReactProvider } from "@web3-react/core";
 import { getLibrary } from "../lib/web3";
 
-const navigation = [
-  { name: "Overview", href: "#", current: true },
-  // { name: "Team", href: "#", current: false },
-  // { name: "Projects", href: "#", current: false },
-  // { name: "Calendar", href: "#", current: false },
-];
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
-
 export default function NavBar() {
   return (
     <Disclosure as="header" className="bg-white">
