@@ -1,5 +1,4 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { ArrowSmDownIcon, ArrowSmUpIcon } from "@heroicons/react/solid";
 import ChainLogo from "./ChainLogo";
 import { useGasOracle, useTokenPrice } from "../lib/hooks";
 import {

@@ -1,13 +1,7 @@
 import ChainLogo from "./ChainLogo";
 import { SearchIcon } from "@heroicons/react/solid";
 import { useState } from "react";
-import {
-  decodeApproveInput,
-  getChainOpts,
-  getErrorMessage,
-  getScanAddressUrl,
-  getScanTxUrl,
-} from "../lib/web3";
+import { decodeApproveInput, getChainOpts, getErrorMessage } from "../lib/web3";
 import { useRouter } from "next/router";
 import { useTxs, useTokenSymbol } from "../lib/hooks";
 // import Notify from "./Notify";
@@ -139,8 +133,9 @@ function TxItems({ chain, txs }) {
 function TxItem({ chain, tx }) {
   const decodedInput = decodeApproveInput(tx.input);
   const { symbol, error } = useTokenSymbol(chain, tx.to);
-  const addressUrl = getScanAddressUrl(chain);
-  const txUrl = getScanTxUrl(chain);
+  const { scanEndpoint } = getChainOpts(chain);
+  const addressUrl = `${scanEndpoint}/address/`;
+  const txUrl = `${scanEndpoint}/tx/`;
 
   return (
     <>
