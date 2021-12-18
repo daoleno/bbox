@@ -35,19 +35,21 @@ export default function Pagination({
       <div className="hidden md:-mt-px md:flex w-40">
         <span
           href="#"
-          className="border-t-2 pt-4 px-4 inline-flex justify-around text-center items-center text-sm font-medium text-gray-500"
+          className="pt-4 px-4 inline-flex justify-around text-center items-center text-sm font-medium text-gray-500"
           aria-current="page"
         >
           <form className="w-1/3 block" onSubmit={handleSubmit}>
             <input
               type="text"
-              className="w-full border-0 border-b border-transparent p-0 text-center focus:ring-0 focus:border-indigo-600 appearance-none"
+              className="w-full border-0 p-0 text-center focus:ring-0 focus:border-indigo-600 appearance-none"
               placeholder={fetchIndex}
               onInput={(e) => setInput(+e.target.value)}
             />
           </form>
           <span className="w-1/3">/</span>
-          <span className="w-1/3 p-0 ">{totalSupply || "unknown"}</span>
+          <span className="w-1/3 p-0">
+            {totalSupply || <span className="text-lg">∞</span>}
+          </span>
         </span>
       </div>
       <div className="-mt-px w-0 flex-1 flex justify-end">
