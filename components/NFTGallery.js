@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import {
   getErrorMessage,
-  isVideoReq,
-  hasFileSuffix,
+  hasSupportedSuffix,
   toHttp,
   isVideo,
 } from "../lib/web3";
@@ -194,7 +193,7 @@ function NFTCard({ chain, address, index }) {
 
   // if has not suffix, send HEAD request to get context type
   const { contentType, error: errorContentType } = useContentType(
-    nft && !hasFileSuffix(nft.image) && toHttp(nft.image)
+    nft && !hasSupportedSuffix(nft.image) && toHttp(nft.image)
   );
 
   if (isLoading)
