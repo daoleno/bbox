@@ -1,7 +1,7 @@
 export default {
   originalTitle: "BBoxDAO",
   currentURL: "https://bboxdao.com/",
-  originalImage: "/BBox-logos_black.png",
+  originalImage: "https://bboxdao.com/home.png",
   author: {
     name: "daoleno",
   },
