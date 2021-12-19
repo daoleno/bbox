@@ -3558,10 +3558,10 @@ supports-color@^8.0.0:
   dependencies:
     has-flag "^4.0.0"
 
-swr@^1.1.2-beta.0:
-  version "1.1.2-beta.0"
-  resolved "https://registry.npmmirror.com/swr/download/swr-1.1.2-beta.0.tgz#4c25f3a8e1f825b15426dd8c62d10cec95429be6"
-  integrity sha512-e7ZcPCrEvGX+s4jDtBwV9c+HKqHzG1secuwU8bYjnnGkSJMneyn7OaabJKtRh922DH5a3k2vvBdhftoSL8bHJQ==
+swr@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.npmmirror.com/swr/download/swr-1.1.1.tgz#f13346cc830d7950183af57b341bfabb4cc90d43"
+  integrity sha512-ZpUHyU3N3snj2QGFeE2Fd3BXl1CVS6YQIQGb1ttPAkTmvwZqDyV3GRMNPsaeAYCBM74tfn4XbKx28FVQR0mS7Q==
 
 tailwindcss@^3.0.7:
   version "3.0.7"

@@ -22,7 +22,7 @@
     "react-dom": "^17.0.2",
     "react-dropzone": "^11.4.2",
     "react-json-view": "^1.21.3",
-    "swr": "^1.1.2-beta.0"
+    "swr": "^1.1.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.6",
