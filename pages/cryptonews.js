@@ -24,7 +24,7 @@ async function getAllFeeds(...urls) {
 export default function Feeds() {
   const { data: items, error } = useSWR(feedUrls, getAllFeeds);
   const { query } = useRouter();
-  const { p } = query;
+  const { p = 1 } = query;
   if (error) return <div>failed to load</div>;
   if (!items) return <div>loading...</div>;
 
