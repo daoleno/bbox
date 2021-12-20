@@ -63,11 +63,18 @@ const files = [
     href: "/gasnow",
   },
   {
+    title: "Crypto News",
+    bgColor: "bg-yellow-300",
+    source: "/cryptonews.svg",
+    href: "/cryptonews",
+  },
+  {
     title: "Issue Token On Solana",
     bgColor: "bg-green-0",
     source: "/comming.png",
     href: "/",
   },
+
   // More files...
 ];
 
