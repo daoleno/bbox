@@ -1,7 +1,6 @@
 import Parser from "rss-parser";
-import useSWR from "swr";
 import { toCorsHttp, timeSince } from "../lib/web3";
-import { useRouter } from "next/router";
+import { useState } from "react";
 
 const feedUrls = [
   "https://rekt.news/rss/feed.xml",
@@ -13,28 +12,32 @@ const feedUrls = [
   "https://decrypt.co/feed",
   "https://vitalik.ca//./feed.xml",
   "http://feeds.feedburner.com/ConsenSys/posts?format=xml",
-  // "https://rsshub.app/telegram/channel/thedailyape",
+  "https://rsshub.app/telegram/channel/thedailyape",
   // "https://rsshub.app/telegram/channel/wublockchainenglish",
   // "https://rsshub.app/telegram/channel/DelphiDigitalAlerts",
 ];
 
-async function getFeeds(url) {
-  const parser = new Parser();
-  const feed = await parser.parseURL(toCorsHttp(url));
-  return feed.items;
+export async function getServerSideProps() {
+  const feeds = await getAllFeeds(...feedUrls);
+  return { props: { feeds } };
 }
 
 async function getAllFeeds(...urls) {
-  const feeds = await Promise.all(urls.map(getFeeds));
+  const parser = new Parser();
+  const feeds = await Promise.all(
+    urls.map(async (url) => await (await parser.parseURL(url)).items)
+  );
   return feeds.flat();
 }
 
-export default function Feeds() {
-  const { data: items, error } = useSWR(feedUrls, getAllFeeds);
-  const { query } = useRouter();
-  const { p = 1 } = query;
-  if (error) return <div>failed to load</div>;
-  if (!items) return <div>loading...</div>;
+export default function Feeds({ feeds }) {
+  const [pageNumber, setPageNumber] = useState(1);
+
+  // filter data by title
+  const items = feeds.filter((item) => {
+    const title = item.title.toLowerCase();
+    return !title.includes("sponsor");
+  });
 
   // sort items by pubDate
   items.sort((a, b) => {
@@ -64,12 +67,10 @@ export default function Feeds() {
           <span className="text-gray-900 ml-1">Crypto News</span>
         </a>
       </div>
-      <NewsPage items={items} pageno={+p || 1} />
+      <NewsPage items={items} pageno={pageNumber} />
       <button
         className="font-semibold ml-12 mr-4 mt-3"
-        onClick={() => {
-          window.location.href = `/cryptonews?p=${+p + 1}`;
-        }}
+        onClick={() => setPageNumber(pageNumber + 1)}
       >
         More
       </button>
