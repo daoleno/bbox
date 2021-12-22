@@ -3,6 +3,12 @@ import Image from "next/image";
 
 const files = [
   {
+    title: "Crypto News",
+    bgColor: "bg-yellow-300",
+    source: "/cryptonews.svg",
+    href: "/cryptonews",
+  },
+  {
     title: "Issue ERC20",
     bgColor: "bg-blue-500",
     source: "/developers-eth-blocks.png",
@@ -61,12 +67,6 @@ const files = [
     bgColor: "bg-blue-300",
     source: "/transistor-green-energy.png",
     href: "/gasnow",
-  },
-  {
-    title: "Crypto News",
-    bgColor: "bg-yellow-300",
-    source: "/cryptonews.svg",
-    href: "/cryptonews",
   },
   {
     title: "Issue Token On Solana",

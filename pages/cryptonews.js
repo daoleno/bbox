@@ -5,9 +5,17 @@ import { useRouter } from "next/router";
 
 const feedUrls = [
   "https://rekt.news/rss/feed.xml",
-  "https://rsshub.app/telegram/channel/thedailyape",
-  "https://rsshub.app/telegram/channel/wublockchainenglish",
-  "https://rsshub.app/telegram/channel/DelphiDigitalAlerts",
+  "https://future.a16z.com/feed",
+  "https://blog.ethereum.org/feed.xml",
+  "https://newsletter.banklesshq.com/feed",
+  "https://www.theblockcrypto.com/rss.xml",
+  "https://www.coindesk.com/arc/outboundfeeds/rss/?outputType=xml",
+  "https://decrypt.co/feed",
+  "https://vitalik.ca//./feed.xml",
+  "http://feeds.feedburner.com/ConsenSys/posts?format=xml",
+  // "https://rsshub.app/telegram/channel/thedailyape",
+  // "https://rsshub.app/telegram/channel/wublockchainenglish",
+  // "https://rsshub.app/telegram/channel/DelphiDigitalAlerts",
 ];
 
 async function getFeeds(url) {
@@ -93,7 +101,7 @@ export function NewsPage({ items, pageno }) {
                       target="_blank"
                       className="hover:underline"
                     >
-                      {item.link}
+                      {new URL(item.link).hostname}
                     </a>
                     )
                   </span>
