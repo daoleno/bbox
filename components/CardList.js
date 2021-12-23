@@ -9,6 +9,12 @@ const files = [
     href: "/cryptonews",
   },
   {
+    title: "Crypto Jobs",
+    bgColor: "bg-yellow-300",
+    source: "/cryptojobs.svg",
+    href: "/cryptojobs",
+  },
+  {
     title: "Issue ERC20",
     bgColor: "bg-blue-500",
     source: "/developers-eth-blocks.png",
