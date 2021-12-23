@@ -10,7 +10,7 @@ const files = [
   },
   {
     title: "Crypto Jobs",
-    bgColor: "bg-yellow-300",
+    bgColor: "bg-sky-300",
     source: "/cryptojobs.svg",
     href: "/cryptojobs",
   },
