@@ -74,12 +74,12 @@ const files = [
     source: "/transistor-green-energy.png",
     href: "/gasnow",
   },
-  {
-    title: "Issue Token On Solana",
-    bgColor: "bg-green-0",
-    source: "/comming.png",
-    href: "/",
-  },
+  // {
+  //   title: "Issue Token On Solana",
+  //   bgColor: "bg-green-0",
+  //   source: "/comming.png",
+  //   href: "/spltoken",
+  // },
 
   // More files...
 ];
