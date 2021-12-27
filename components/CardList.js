@@ -74,6 +74,12 @@ const files = [
     source: "/transistor-green-energy.png",
     href: "/gasnow",
   },
+  {
+    title: "Faucet",
+    bgColor: "bg-sky-100",
+    source: "/faucet.svg",
+    href: "/faucet",
+  },
   // {
   //   title: "Issue Token On Solana",
   //   bgColor: "bg-green-0",

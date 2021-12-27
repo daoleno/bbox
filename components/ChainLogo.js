@@ -4,17 +4,17 @@ export function ChainIcon({ chain }) {
   switch (chain) {
     case "eth":
       return (
-        <img className="w-auto h-5" src="/ethereum-logo.svg" alt="Ethereum" />
+        <img className="w-auto h-5" src="/logo/ethereum.svg" alt="Ethereum" />
       );
     case "polygon":
       return (
-        <img className="w-auto h-5" src="/polygon-logo.svg" alt="Polygon" />
+        <img className="w-auto h-5" src="/logo/polygon.svg" alt="Polygon" />
       );
     case "bsc":
       return (
         <img
           className="w-auto h-5"
-          src="/bsc-logo.svg"
+          src="/logo/bsc.svg"
           alt="Binance Smart Chain"
         />
       );
