@@ -2,34 +2,10 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import Connector from "./Connector";
 import { Web3ReactProvider } from "@web3-react/core";
 import { getLibrary } from "../lib/web3";
-import {
-  WalletConnectButton,
-  WalletModalButton,
-  WalletMultiButton,
-} from "@solana/wallet-adapter-react-ui";
-import { ConnectionProvider } from "@solana/wallet-adapter-react";
-import dynamic from "next/dynamic";
-import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
 import React, { useMemo } from "react";
-import { clusterApiUrl } from "@solana/web3.js";
 import { useRouter } from "next/router";
 
-// const SOLANA_NETWORK = WalletAdapterNetwork.Mainnet;
-const SOLANA_NETWORK = WalletAdapterNetwork.Devnet;
-const network = SOLANA_NETWORK;
-
-const WalletProvider = dynamic(
-  () => import("../contexts/ClientWalletProvider"),
-  {
-    ssr: false,
-  }
-);
 export default function NavBar() {
-  const endpoint = useMemo(() => clusterApiUrl(network), []);
-
-  const router = useRouter();
-  const { pathname } = router;
-
   return (
     <Disclosure as="header" className="bg-white">
       <div className="relative py-6 sm:px-6 flex justify-between">
@@ -41,17 +17,9 @@ export default function NavBar() {
           />
         </a>
         <div className="flex items-center">
-          {pathname.includes("spl") ? (
-            <ConnectionProvider endpoint={endpoint}>
-              <WalletProvider>
-                <WalletMultiButton />
-              </WalletProvider>
-            </ConnectionProvider>
-          ) : (
-            <Web3ReactProvider getLibrary={getLibrary}>
-              <Connector />
-            </Web3ReactProvider>
-          )}
+          <Web3ReactProvider getLibrary={getLibrary}>
+            <Connector />
+          </Web3ReactProvider>
         </div>
       </div>
       {/* <nav
