@@ -1,5 +1,10 @@
 const faucets = [
   {
+    name: "Ropsten, Rinkeby, Kovan, and Goerli",
+    url: "https://app.mycrypto.com/faucet",
+    logo: "/logo/ethereum.svg",
+  },
+  {
     name: "Ropsten 1",
     url: "https://faucet.metamask.io/",
     logo: "/logo/ethereum.svg",
