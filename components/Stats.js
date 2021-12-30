@@ -17,7 +17,6 @@ export default function Stats({ chain }) {
   const { gasOracle, error } = useGasOracle(chain);
   const { tokenSymbol } = getChainOpts(chain);
   const { price, priceError } = useTokenPrice(tokenSymbol);
-  console.log("gasOracle", gasOracle);
   const usdc = price && price.USDC ? price.USDC : null;
 
   const txTime = defaultTxTime[chain];

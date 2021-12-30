@@ -7,10 +7,21 @@ import {
 } from "../lib/web3";
 import { SearchIcon } from "@heroicons/react/solid";
 import { useRouter } from "next/router";
-import { tokensNFTETH, tokensNFTBSC, tokensPolygon } from "../lib/tokensNFT";
+import {
+  tokensNFTETH,
+  tokensNFTBSC,
+  tokensPolygon,
+  tokensNFTSOL,
+} from "../lib/tokensNFT";
 import Link from "next/link";
 import PopOver from "./Popover";
-import { useNFT, useTotalSupply, useContentType } from "../lib/hooks";
+import {
+  useNFT,
+  useSolNFT,
+  useTotalSupply,
+  useContentType,
+  useSolNFTCollection,
+} from "../lib/hooks";
 import Pagination from "./Pagination";
 import Notify from "./Notify";
 import ChainLogo from "./ChainLogo";
@@ -71,8 +82,9 @@ export default function NFTGallery({ chain }) {
     case "polygon":
       tokensNFT = tokensPolygon;
       break;
+    case "sol":
+      tokensNFT = tokensNFTSOL;
     default:
-      tokensNFT = tokensNFTETH;
   }
 
   function handleFetch(e) {
@@ -113,7 +125,11 @@ export default function NFTGallery({ chain }) {
                 name="search"
                 id="search"
                 className="block w-full bg-white border border-gray-300 rounded-md py-2 pl-10 pr-3 text-sm placeholder-gray-500 focus:outline-none focus:text-gray-900 focus:placeholder-gray-400 focus:ring-1 focus:ring-gray-900 focus:border-gray-900 sm:text-sm"
-                placeholder="NFT Contract Address"
+                placeholder={
+                  chain == "sol"
+                    ? "Solscan Collection ID"
+                    : "NFT Contract Address"
+                }
                 type="search"
                 onInput={(e) => setSearchValue(e.target.value)}
               />
@@ -132,7 +148,9 @@ export default function NFTGallery({ chain }) {
           </div>
         </form>
         {!search && chain != "eth" && <TrendingSimple chain={chain} />}
-        {!search && chain === "eth" && <Trending chain="eth" />}
+        {!search && (chain === "eth" || chain === "sol") && (
+          <Trending chain={chain} />
+        )}
 
         {/* Loading Spinner */}
         {!isReady && (
@@ -169,13 +187,32 @@ export default function NFTGallery({ chain }) {
 
 function NFTCardPage({ chain, address, index }) {
   const pageLimit = index + onePageNumber;
-  const nfts = [];
-  for (let i = index; i < pageLimit; i++) {
-    nfts.push(
-      <li key={i} className="relative">
-        <NFTCard chain={chain} address={address} index={i} />
-      </li>
-    );
+  const { nfts: nftCollection, error } = useSolNFTCollection(
+    chain,
+    address,
+    index,
+    onePageNumber
+  );
+  let nfts = [];
+  if (chain === "sol") {
+    const solnfts = nftCollection.map((nft, i) => {
+      return (
+        <li key={i} className="relative">
+          <NFTCard chain={chain} tokenURI={nft.info.data.uri} />
+        </li>
+      );
+    });
+    if (solnfts) {
+      nfts = solnfts;
+    }
+  } else {
+    for (let i = index; i < pageLimit; i++) {
+      nfts.push(
+        <li key={i} className="relative">
+          <NFTCard chain={chain} address={address} index={i} />
+        </li>
+      );
+    }
   }
 
   return (
@@ -188,8 +225,21 @@ function NFTCardPage({ chain, address, index }) {
   );
 }
 
-function NFTCard({ chain, address, index }) {
-  const { nft, isLoading, error } = useNFT(chain, address, index);
+function NFTCard({ tokenURI, chain, address, index }) {
+  const {
+    nft: ethnft,
+    isLoading: ethIsLoading,
+    error: ethError,
+  } = useNFT(chain, address, index);
+  const {
+    nft: solnft,
+    isLoading: solIsLoading,
+    error: solError,
+  } = useSolNFT(tokenURI);
+
+  const nft = solnft || ethnft;
+  const isLoading = solIsLoading && ethIsLoading;
+  const error = solError && ethError;
 
   // if has not suffix, send HEAD request to get context type
   const { contentType, error: errorContentType } = useContentType(
@@ -208,18 +258,18 @@ function NFTCard({ chain, address, index }) {
     );
 
   const view =
-    isVideo(nft.image) || (contentType && contentType.includes("video")) ? (
+    isVideo(nft?.image) || (contentType && contentType.includes("video")) ? (
       <video
         className="object-cover pointer-events-none group-hover:opacity-75"
-        src={toHttp(nft.image)}
+        src={toHttp(nft?.image)}
         autoPlay
         loop
         muted
       />
     ) : (
       <img
-        src={toHttp(nft.image)}
-        alt={nft.name}
+        src={toHttp(nft?.image)}
+        alt={nft?.name}
         className="object-cover pointer-events-none group-hover:opacity-75"
       />
     );

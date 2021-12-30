@@ -3,8 +3,9 @@ import { getErrorMessage } from "../lib/web3";
 import Notify from "./Notify";
 import { tokensNFTBSC, tokensPolygon } from "../lib/tokensNFT";
 
-export function Trending() {
-  const { topNFTs, error } = useTopNFTs();
+export function Trending({ chain }) {
+  const { topNFTs, error } = useTopNFTs(chain);
+
   return (
     <>
       {error && <Notify error={getErrorMessage(error)} />}
@@ -29,7 +30,11 @@ export function Trending() {
               <h1 className="font-sans mx-1">Top NFTs</h1>
             </div>
             <a
-              href="https://etherscan.io/tokens-nft"
+              href={
+                chain == "sol"
+                  ? "https://solscan.io/nfts#collections"
+                  : "https://etherscan.io/tokens-nft"
+              }
               target="_blank"
               className="flex justify-end mr-3"
             >
@@ -70,12 +75,12 @@ export function Trending() {
                         >
                           Floor (Sales)
                         </th>
-                        <th
+                        {/* <th
                           scope="col"
                           className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                         >
                           Average
-                        </th>
+                        </th> */}
                         <th
                           scope="col"
                           className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
@@ -86,46 +91,50 @@ export function Trending() {
                           scope="col"
                           className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                         >
-                          Sales
+                          {chain == "sol" ? "Items" : "Sales"}
                         </th>
                       </tr>
                     </thead>
                     <tbody className="bg-white">
                       {topNFTs.map((nft) => (
-                        <tr key={nft.nft_address} className="hover:bg-gray-50">
+                        <tr
+                          key={nft.nft_address || nft.data.collectionId}
+                          className="hover:bg-gray-50"
+                        >
                           <td className="px-6 py-4 whitespace-nowrap ">
                             <a
                               className="flex items-center"
-                              href={`/nftgallery/eth?search=${nft.nft_address}`}
+                              href={`/nftgallery/${chain}?search=${
+                                nft.nft_address || nft?.data?.collectionId
+                              }`}
                             >
                               <div className="flex-shrink-0 h-10 w-10">
                                 <img
                                   className="h-10 w-10 rounded-xl"
-                                  src={nft.image}
-                                  alt={nft.nft_platform}
+                                  src={nft.image || nft?.data?.avatar}
+                                  alt={
+                                    nft.nft_platform || nft?.data?.collection
+                                  }
                                 />
                               </div>
                               <div className="ml-4 text-sm font-medium text-gray-900">
-                                {nft.nft_platform}
+                                {nft.nft_platform || nft?.data?.collection}
                               </div>
                             </a>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap">
-                            <div className="text-sm text-gray-900">
-                              {nft.title}
-                            </div>
                             <div className="text-sm text-gray-500">
-                              {nft.floor_price}
+                              {nft.floor_price || nft?.floorPrice / 1e9}
                             </div>
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          {/* <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             {nft.average_price}
+                          </td> */}
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {nft.total_value || nft?.volume / 1e9}
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {nft.total_value}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {nft.count}
+                            {nft.count || nft?.totalItems}
                           </td>
                         </tr>
                       ))}

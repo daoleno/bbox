@@ -51,6 +51,12 @@ const files = [
     href: "/nftgallery/polygon",
   },
   {
+    title: "Solana NFT Gallery",
+    bgColor: "bg-black",
+    source: "/solnft.jpeg",
+    href: "/nftgallery/sol",
+  },
+  {
     title: "Ethereum Token Approval",
     bgColor: "bg-blue-500",
     source: "/approved.png",

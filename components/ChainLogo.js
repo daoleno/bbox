@@ -18,6 +18,8 @@ export function ChainIcon({ chain }) {
           alt="Binance Smart Chain"
         />
       );
+    case "sol":
+      return <img className="w-auto h-5" src="/logo/solana.svg" alt="Solana" />;
   }
 }
 
@@ -43,6 +45,15 @@ export default function ChainLogo({ chain }) {
         </div>
       );
     case "bsc":
+      return (
+        <div className="flex items-center">
+          <ChainIcon chain={chain} />
+          <span className="mx-2 ml-2 text-sm text-gray-600 font-mono">
+            {chainName}
+          </span>
+        </div>
+      );
+    case "sol":
       return (
         <div className="flex items-center">
           <ChainIcon chain={chain} />
