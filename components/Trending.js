@@ -98,7 +98,7 @@ export function Trending({ chain }) {
                     <tbody className="bg-white">
                       {topNFTs.map((nft) => (
                         <tr
-                          key={nft.nft_address || nft.data.collectionId}
+                          key={nft.nft_address || nft?.data?.collectionId}
                           className="hover:bg-gray-50"
                         >
                           <td className="px-6 py-4 whitespace-nowrap ">
