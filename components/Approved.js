@@ -24,28 +24,29 @@ export default function Approved({ chain }) {
         className="relative z-0 flex-1 px-2 py-4 flex flex-wrap items-center justify-center"
         onSubmit={handleFetch}
       >
-        <a href={`/approved/${chain}`} className="lg:mb-0 md:mb-0 mb-3">
+        <a href={`/approved/${chain}`} className="label">
           <ChainLogo chain={chain} />
         </a>
-        <div className="max-w-xs w-full">
-          <label htmlFor="search" className="sr-only">
-            Search
-          </label>
-          <div className="relative flex flex-row">
-            <div className="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center">
+        <div className="relative flex flex-row">
+          {/* <div className="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center">
               <SearchIcon
                 className="flex-shrink-0 h-5 w-5 text-gray-400"
                 aria-hidden="true"
               />
-            </div>
+            </div> */}
+          <div class="relative">
             <input
-              name="search"
-              id="search"
-              className="block w-full bg-white border border-gray-300 rounded-md py-2 pl-10 pr-3 text-sm placeholder-gray-500 focus:outline-none focus:text-gray-900 focus:placeholder-gray-400 focus:ring-1 focus:ring-gray-900 focus:border-gray-900 sm:text-sm"
+              type="text"
               placeholder="Address"
-              type="search"
+              class="w-full pr-16 input input-primary input-bordered"
               onInput={(e) => setAddress(e.target.value)}
             />
+            <button
+              class="absolute top-0 right-0 rounded-l-none btn btn-primary"
+              onClick={handleFetch}
+            >
+              go
+            </button>
           </div>
         </div>
       </form>
@@ -53,11 +54,11 @@ export default function Approved({ chain }) {
         /* This example requires Tailwind CSS v2.0+ */
         <div className="sm:rounded-lg flex flex-col">
           <img src="/wallet.svg" alt="approve" className="mx-auto" />
-          <div className="px-4 py-5 sm:p-6  text-center">
-            <h3 className="text-lg leading-6 font-medium text-gray-900 ">
+          <div className="px-4 py-5 sm:p-6 text-center">
+            <h3 className="text-lg leading-6 font-medium">
               Revoke Token Approvals
             </h3>
-            <div className="mt-2 text-sm text-gray-500 sm:text-center">
+            <div className="mt-2 text-sm sm:text-center">
               <p>Review and revoke your token approvals for any dApp.</p>
             </div>
           </div>

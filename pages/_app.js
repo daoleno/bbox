@@ -2,7 +2,6 @@ import "tailwindcss/tailwind.css";
 import Layout from "./layout";
 import Script from "next/script";
 import NextNProgress from "nextjs-progressbar";
-import React, { useMemo } from "react";
 
 function MyApp({ Component, pageProps }) {
   return (

@@ -11,8 +11,8 @@ export function Trending({ chain }) {
       {error && <Notify error={getErrorMessage(error)} />}
       {topNFTs && (
         <>
-          <div className="flex justify-between text-gray-600 hover:text-gray-900">
-            <div className="flex ml-3 ">
+          <div className="flex justify-between label">
+            <div className="flex ml-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6"
@@ -56,93 +56,48 @@ export function Trending({ chain }) {
             </a>
           </div>
 
-          <div className="flex flex-col mt-3">
-            <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-              <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                  <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-gray-50">
-                      <tr>
-                        <th
-                          scope="col"
-                          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                        >
-                          Collection
-                        </th>
-                        <th
-                          scope="col"
-                          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                        >
-                          Floor (Sales)
-                        </th>
-                        {/* <th
-                          scope="col"
-                          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                        >
-                          Average
-                        </th> */}
-                        <th
-                          scope="col"
-                          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                        >
-                          Volume
-                        </th>
-                        <th
-                          scope="col"
-                          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                        >
-                          {chain == "sol" ? "Items" : "Sales"}
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody className="bg-white">
-                      {topNFTs.map((nft) => (
-                        <tr
-                          key={nft.nft_address || nft?.data?.collectionId}
-                          className="hover:bg-gray-50"
-                        >
-                          <td className="px-6 py-4 whitespace-nowrap ">
-                            <a
-                              className="flex items-center"
-                              href={`/nftgallery/${chain}?search=${
-                                nft.nft_address || nft?.data?.collectionId
-                              }`}
-                            >
-                              <div className="flex-shrink-0 h-10 w-10">
-                                <img
-                                  className="h-10 w-10 rounded-xl"
-                                  src={nft.image || nft?.data?.avatar}
-                                  alt={
-                                    nft.nft_platform || nft?.data?.collection
-                                  }
-                                />
-                              </div>
-                              <div className="ml-4 text-sm font-medium text-gray-900">
-                                {nft.nft_platform || nft?.data?.collection}
-                              </div>
-                            </a>
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            <div className="text-sm text-gray-500">
-                              {nft.floor_price || nft?.floorPrice / 1e9}
-                            </div>
-                          </td>
-                          {/* <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {nft.average_price}
-                          </td> */}
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {nft.total_value || nft?.volume / 1e9}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {nft.count || nft?.totalItems}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
+          <div className="overflow-x-auto">
+            <table class="table w-full table-compact">
+              <thead>
+                <tr>
+                  <th>Collection</th>
+                  <th>Floor (Sales)</th>
+                  <th>Volume</th>
+                  <th>{chain == "sol" ? "Items" : "Sales"}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {topNFTs.map((nft) => (
+                  <tr key={nft.address} class="hover">
+                    <td>
+                      <a
+                        class="flex items-center space-x-3"
+                        href={`/nftgallery/${chain}?search=${
+                          nft.nft_address || nft?.data?.collectionId
+                        }`}
+                      >
+                        <div class="avatar">
+                          <div class="w-12 h-12 mask mask-squircle">
+                            <img
+                              src={nft.image || nft?.data?.avatar}
+                              alt={nft.nft_platform || nft?.data?.collection}
+                            />
+                          </div>
+                        </div>
+                        <div>
+                          <div class="font-bold">
+                            {nft.nft_platform || nft?.data?.collection}
+                          </div>
+                        </div>
+                      </a>
+                    </td>
+                    <td>{nft.floor_price || nft?.floorPrice / 1e9}</td>
+                    <td>{nft.total_value || nft?.volume / 1e9}</td>
+                    <td>{nft.count || nft?.totalItems}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </>
       )}
@@ -167,8 +122,8 @@ export function TrendingSimple({ chain }) {
     <>
       {tokensNFT && (
         <>
-          <div className="flex justify-between text-gray-600 hover:text-gray-900">
-            <div className="flex ml-3 ">
+          <div className="flex justify-between label">
+            <div className="flex ml-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6"
@@ -206,53 +161,30 @@ export function TrendingSimple({ chain }) {
               </svg>
             </a>
           </div>
-
-          <div className="flex flex-col mt-3">
-            <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-              <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                  <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-gray-50">
-                      <tr>
-                        <th
-                          scope="col"
-                          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                        >
-                          Collection
-                        </th>
-                        <th
-                          scope="col"
-                          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                        >
-                          Address
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody className="bg-white">
-                      {tokensNFT.map((nft) => (
-                        <tr key={nft.address} className="hover:bg-gray-50">
-                          <td className="px-6 py-4 whitespace-nowrap ">
-                            <a
-                              className="flex items-center"
-                              href={`/nftgallery/${chain}?search=${nft.address}`}
-                              target="_blank"
-                            >
-                              <div className="ml-4 text-sm font-medium text-gray-900">
-                                {nft.name}
-                              </div>
-                            </a>
-                          </td>
-
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {nft.address}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
+          <div className="overflow-x-auto">
+            <table class="table w-full table-compact">
+              <thead>
+                <tr>
+                  <th>Collection</th>
+                  <th>Address</th>
+                </tr>
+              </thead>
+              <tbody>
+                {tokensNFT.map((nft) => (
+                  <tr key={nft.address} class="hover">
+                    <td>
+                      <a
+                        href={`/nftgallery/${chain}?search=${nft.address}`}
+                        target="_blank"
+                      >
+                        {nft.name}
+                      </a>
+                    </td>
+                    <td>{nft.address}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </>
       )}

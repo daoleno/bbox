@@ -11,7 +11,7 @@ const files = [
   {
     title: "Crypto Jobs",
     bgColor: "bg-sky-300",
-    source: "/cryptojobs.svg",
+    source: "/freelancing.png",
     href: "/cryptojobs",
   },
   {
@@ -105,20 +105,15 @@ export default function CardList() {
       {files.map((file) => (
         <li key={file.title} className="relative">
           <Link href={file.href}>
-            <button
-              className={`group block w-full aspect-w-10 aspect-h-6 rounded-lg ${file.bgColor} focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden`}
-            >
-              <Image
-                src={file.source}
-                alt={file.title}
-                className="object-cover pointer-events-none group-hover:opacity-75"
-                layout="fill"
-              />
-            </button>
+            <div class="card text-center shadow-2xl hover:cursor-pointer">
+              <figure class="px-10 pt-10">
+                <img src={file.source} class="rounded-xl" />
+              </figure>
+              <div class="card-body">
+                <h2 class="card-title"> {file.title}</h2>
+              </div>
+            </div>
           </Link>
-          <p className="mt-2 block text-sm text-center font-medium text-gray-900 truncate pointer-events-none">
-            {file.title}
-          </p>
         </li>
       ))}
     </ul>

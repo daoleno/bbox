@@ -49,80 +49,38 @@ function Issue() {
 
   return (
     <div className="w-full max-w-xs mx-auto sm:mt-20">
-      {error && (
-        <Notify key={new Date().getTime()} error={getErrorMessage(error)} />
-      )}
-      <form>
-        <label className="block uppercase text-gray-700 text-center font-bold mb-4">
+      {error && <Notify error={getErrorMessage(error)} />}
+
+      <div class="form-control">
+        <label class="label block uppercase text-center font-bold mb-4">
           Issue ERC20 Token
         </label>
-        <div className="flex flex-wrap -mx-3 mb-6">
-          <div className="w-full px-3 mb-6 md:mb-0">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              htmlFor="name"
-            >
-              Token Name
-            </label>
-            <input
-              className="appearance-none block w-full text-gray-700 border border-gray-200 rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-name"
-              type="text"
-              name="name"
-              onChange={handleChange}
-            />
-          </div>
-          <div className="w-full px-3 mb-6 md:mb-0">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              htmlFor="symbol"
-            >
-              Token Symbol
-            </label>
-            <input
-              className="appearance-none block w-full text-gray-700 border border-gray-200 rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-memo"
-              type="text"
-              name="symbol"
-              onChange={handleChange}
-            />
-          </div>
-          <div className="w-full px-3 mb-6 md:mb-0">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              htmlFor="supply"
-            >
-              Total Supply
-            </label>
-            <input
-              className="appearance-none block w-full text-gray-700 border border-gray-200 rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-amount"
-              type="number"
-              name="supply"
-              onChange={handleChange}
-            />
-          </div>
-          <div className="w-full px-3 mb-6 md:mb-0">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              htmlFor="grid-address"
-            >
-              Decimal
-            </label>
-            <input
-              className="appearance-none block w-full text-gray-700 border border-gray-200 rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-address"
-              type="number"
-              name="decimal"
-              onChange={handleChange}
-            />
-          </div>
-        </div>
-        <div className="flex justify-center">
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline"
-            onClick={handleIssue}
-          >
+        <span class="label label-text">Token Name</span>
+        <input
+          type="text"
+          class="input input-bordered"
+          onChange={handleChange}
+        />
+        <span class="label label-text">Token Symbol</span>
+        <input
+          type="text"
+          class="input input-bordered"
+          onChange={handleChange}
+        />
+        <span class="label label-text">Total Supply</span>
+        <input
+          type="text"
+          class="input input-bordered"
+          onChange={handleChange}
+        />
+        <span class="label label-text">Decimal</span>
+        <input
+          type="text"
+          class="input input-bordered"
+          onChange={handleChange}
+        />
+        <div className="flex justify-center -mx-3 mt-6">
+          <button className="btn" onClick={handleIssue}>
             {active
               ? "Issue"
               : activating && !error
@@ -130,7 +88,7 @@ function Issue() {
               : "Connect Wallet"}
           </button>
         </div>
-      </form>
+      </div>
     </div>
   );
 }

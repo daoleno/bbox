@@ -13,6 +13,8 @@ const feedUrls = [
   "https://vitalik.ca//./feed.xml",
   "http://feeds.feedburner.com/ConsenSys/posts?format=xml",
   "https://rsshub.app/telegram/channel/thedailyape",
+  "https://medium.com/feed/@ambergroup",
+  "https://medium.com/feed/@polynya",
   // "https://rsshub.app/telegram/channel/wublockchainenglish",
   // "https://rsshub.app/telegram/channel/DelphiDigitalAlerts",
 ];

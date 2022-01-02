@@ -30,36 +30,28 @@ export default function ChainLogo({ chain }) {
       return (
         <div className="flex">
           <ChainIcon chain={chain} />
-          <span className="mx-2 ml-2 text-sm text-gray-600 font-mono">
-            {chainName}
-          </span>
+          <span className="mx-2 ml-2 text-sm font-mono">{chainName}</span>
         </div>
       );
     case "polygon":
       return (
         <div className="flex">
           <ChainIcon chain={chain} />
-          <span className="mx-2 ml-2 text-sm text-gray-600 font-mono">
-            {chainName}
-          </span>
+          <span className="mx-2 ml-2 text-sm font-mono">{chainName}</span>
         </div>
       );
     case "bsc":
       return (
-        <div className="flex items-center">
+        <div className="flex items-center label">
           <ChainIcon chain={chain} />
-          <span className="mx-2 ml-2 text-sm text-gray-600 font-mono">
-            {chainName}
-          </span>
+          <span className="mx-2 ml-2 text-sm font-mono">{chainName}</span>
         </div>
       );
     case "sol":
       return (
         <div className="flex items-center">
           <ChainIcon chain={chain} />
-          <span className="mx-2 ml-2 text-sm text-gray-600 font-mono">
-            {chainName}
-          </span>
+          <span className="mx-2 ml-2 text-sm font-mono">{chainName}</span>
         </div>
       );
   }

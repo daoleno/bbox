@@ -23,7 +23,7 @@ export default function Feeds({ feeds, title, href }) {
 
   return (
     <section>
-      <div className="text-xl font-bold ml-6 mb-4 flex">
+      <div className="text-xl font-bold ml-6 mb-4 flex mt-3">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-6 w-6"
@@ -39,7 +39,7 @@ export default function Feeds({ feeds, title, href }) {
           />
         </svg>
         <a href={href}>
-          <span className="text-gray-900 ml-1">{title}</span>
+          <span className="ml-1">{title}</span>
         </a>
       </div>
       <NewsPage items={items} pageno={pageNumber} />

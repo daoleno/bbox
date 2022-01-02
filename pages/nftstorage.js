@@ -55,38 +55,25 @@ export default function NFTStorage() {
       {error && (
         <Notify key={new Date().getTime()} error={getErrorMessage(error)} />
       )}
-      <label className="block uppercase text-gray-700 text-center font-bold mb-4 lg:mt-16">
+      <h2 className="block uppercase text-gray-700 text-center font-bold mb-4 lg:mt-16">
         NFT Storage
-      </label>
+      </h2>
       <div className="flex flex-wrap justify-center sm:mt-20">
-        <div className="flex flex-col px-3 mb-6 md:mb-0 justify-center">
-          <div className="px-3 mb-6 md:mb-0">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              htmlFor="name"
-            >
-              Name
-            </label>
-            <input
-              className="appearance-none block w-full text-gray-700 border border-gray-200 rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-name"
-              type="text"
-              name="name"
-              onChange={handleChange}
-            />
-          </div>
-          <div className="px-3 mb-6 md:mb-0">
-            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-              Description
-            </label>
-            <input
-              className="appearance-none block w-full text-gray-700 border border-gray-200 rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-description"
-              type="text"
-              name="description"
-              onChange={handleChange}
-            />
-          </div>
+        <div className="flex flex-col px-3 mb-6 justify-center">
+          <label className="label" htmlFor="name">
+            Name
+          </label>
+          <input
+            type="text"
+            class="input input-bordered"
+            onChange={handleChange}
+          />
+          <label className="label">Description</label>
+          <input
+            type="text"
+            class="input input-bordered"
+            onChange={handleChange}
+          />
         </div>
         <div className="self-center" {...getRootProps()}>
           <button
@@ -123,7 +110,7 @@ export default function NFTStorage() {
                     d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
                   />
                 </svg>
-                <span className="mt-2 block text-sm font-medium text-gray-900">
+                <span className="mt-2 block text-sm font-medium">
                   {isDragActive ? "Dropping" : "Drop image here"}
                 </span>
               </Fragment>
@@ -134,7 +121,7 @@ export default function NFTStorage() {
       </div>
       <button
         type="button"
-        className="relative block mx-auto mt-5 disabled:opacity-50 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        className="relative block mx-auto mt-5 btn"
         onClick={handleUpload}
       >
         {uploading ? "Uploading" : "Upload"}

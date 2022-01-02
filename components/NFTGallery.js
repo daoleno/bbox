@@ -26,6 +26,8 @@ import Pagination from "./Pagination";
 import Notify from "./Notify";
 import ChainLogo from "./ChainLogo";
 import { Trending, TrendingSimple } from "./Trending";
+import dynamic from "next/dynamic";
+import Image from "./Image";
 
 const onePageNumber = 8;
 const emojis = [
@@ -103,50 +105,44 @@ export default function NFTGallery({ chain }) {
     <>
       {/* {error && <Notify error={getErrorMessage(error)} />} */}
       <div className="flex flex-col">
-        <form
-          className="relative z-0 flex-1 px-2 py-4 flex flex-wrap items-center justify-center"
-          onSubmit={handleFetch}
-        >
-          <a href={`/nftgallery/${chain}`} className="lg:mb-0 md:mb-0 mb-3">
+        <div class="z-0 flex-1 px-2 py-4 flex flex-wrap items-center justify-center ">
+          <a href={`/nftgallery/${chain}`} className="label">
             <ChainLogo chain={chain} />
           </a>
-          <div className="max-w-xs w-full">
-            <label htmlFor="search" className="sr-only">
-              Search
-            </label>
-            <div className="relative flex flex-row">
-              <div className="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center">
-                <SearchIcon
-                  className="flex-shrink-0 h-5 w-5 text-gray-400"
-                  aria-hidden="true"
+          <div className="flex">
+            <div className="form-control">
+              <div class="relative">
+                <input
+                  type="text"
+                  placeholder={
+                    chain == "sol"
+                      ? "Solscan Collection ID"
+                      : "NFT Contract Address"
+                  }
+                  class="w-full pr-16 input input-primary input-bordered"
+                  onInput={(e) => setSearchValue(e.target.value)}
                 />
-              </div>
-              <input
-                name="search"
-                id="search"
-                className="block w-full bg-white border border-gray-300 rounded-md py-2 pl-10 pr-3 text-sm placeholder-gray-500 focus:outline-none focus:text-gray-900 focus:placeholder-gray-400 focus:ring-1 focus:ring-gray-900 focus:border-gray-900 sm:text-sm"
-                placeholder={
-                  chain == "sol"
-                    ? "Solscan Collection ID"
-                    : "NFT Contract Address"
-                }
-                type="search"
-                onInput={(e) => setSearchValue(e.target.value)}
-              />
-              {/* get random emojis */}
-              <div className="text-center my-auto pl-3 text-3xl">
-                <Link
-                  href={`?search=${
-                    tokensNFT[Math.floor(Math.random() * tokensNFT.length)]
-                      .address
-                  }`}
+                <button
+                  class="absolute top-0 right-0 rounded-l-none btn btn-primary"
+                  onClick={handleFetch}
                 >
-                  {emojis[Math.floor(Math.random() * emojis.length)]}
-                </Link>
+                  go
+                </button>
               </div>
             </div>
+            {/* get random emojis */}
+            <div className="text-center my-auto pl-3 text-3xl">
+              <Link
+                href={`?search=${
+                  tokensNFT[Math.floor(Math.random() * tokensNFT.length)]
+                    .address
+                }`}
+              >
+                {emojis[Math.floor(Math.random() * emojis.length)]}
+              </Link>
+            </div>
           </div>
-        </form>
+        </div>
         {!search && chain != "eth" && <TrendingSimple chain={chain} />}
         {!search && (chain === "eth" || chain === "sol") && (
           <Trending chain={chain} />
@@ -250,27 +246,25 @@ function NFTCard({ tokenURI, chain, address, index }) {
     return (
       <>
         {error && <Notify error={getErrorMessage(error)} />}
-        <button className="animate-pulse group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden"></button>
-        <div className="flex justify-around mt-2 text-sm font-medium text-gray-900">
-          ...
+        <div class="animate-pulse card text-center shadow-2xl hover:cursor-pointer overflow-visible">
+          <figure class="animate-pulse px-10 pt-10 group block w-full aspect-w-10 aspect-h-10 rounded-lg bg-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden" />
+          <div class="card-body flex flex-row">
+            <a class="card-title" target="_blank">
+              ...
+            </a>
+          </div>
         </div>
       </>
     );
 
   const view =
-    isVideo(nft?.image) || (contentType && contentType.includes("video")) ? (
-      <video
-        className="object-cover pointer-events-none group-hover:opacity-75"
-        src={toHttp(nft?.image)}
-        autoPlay
-        loop
-        muted
-      />
+    isVideo(nft?.image) || contentType?.includes("video") ? (
+      <video class="rounded-xl" src={toHttp(nft?.image)} autoPlay loop muted />
     ) : (
       <img
         src={toHttp(nft?.image)}
         alt={nft?.name}
-        className="object-cover pointer-events-none group-hover:opacity-75"
+        class="rounded-xl bg-transparent bg-gray-400"
       />
     );
 
@@ -278,17 +272,48 @@ function NFTCard({ tokenURI, chain, address, index }) {
     <>
       {nft && (
         <>
-          <button className="group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-200 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
-            {view}
-          </button>
-          <div className="flex justify-around mt-2 text-sm font-medium text-gray-900">
-            <a href={toHttp(nft.image)} target="_blank">
-              {nft.name}
-            </a>
-            <PopOver info={nft} />
+          <div class="card text-center shadow-2xl hover:cursor-pointer overflow-visible">
+            <figure class="px-10 pt-10 group block w-full aspect-w-10 aspect-h-10 rounded-lg">
+              {view}
+            </figure>
+            <div class="card-body flex flex-row">
+              <a class="card-title" href={toHttp(nft.image)} target="_blank">
+                {nft.name}
+              </a>
+              <div class="dropdown">
+                <div tabindex="0" class="m-1">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                </div>
+                <div
+                  tabindex="0"
+                  class="p-2 shadow menu dropdown-content bg-base-100 rounded-box text-left"
+                >
+                  <DynamicReactJson
+                    src={nft}
+                    theme="summerfruit:inverted"
+                    displayDataTypes={false}
+                    displayObjectSize={false}
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </>
       )}
     </>
   );
 }
+const DynamicReactJson = dynamic(import("react-json-view"), { ssr: false });

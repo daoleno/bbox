@@ -21,11 +21,7 @@ export default function Connector() {
       {error && (
         <Notify key={new Date().getTime()} error={getErrorMessage(error)} />
       )}
-      <button
-        type="button"
-        onClick={handleActivate}
-        className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-      >
+      <button onClick={handleActivate} className="btn btn-primary">
         {active
           ? `${account.substring(0, 6)}...${account.substring(
               account.length - 4
