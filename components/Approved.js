@@ -28,12 +28,6 @@ export default function Approved({ chain }) {
           <ChainLogo chain={chain} />
         </a>
         <div className="relative flex flex-row">
-          {/* <div className="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center">
-              <SearchIcon
-                className="flex-shrink-0 h-5 w-5 text-gray-400"
-                aria-hidden="true"
-              />
-            </div> */}
           <div class="relative">
             <input
               type="text"
@@ -65,7 +59,6 @@ export default function Approved({ chain }) {
         </div>
       )}
 
-      {/* loading */}
       {txs.length == 0 && search && (
         <div className="flex justify-center items-center mt-48">
           <img
@@ -77,47 +70,19 @@ export default function Approved({ chain }) {
       )}
 
       {txs.length > 0 && (
-        <div className="flex flex-col">
-          <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-              <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                <table className="min-w-full divide-y divide-gray-200">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th
-                        scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                      >
-                        Transaction
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                      >
-                        Spender
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                      >
-                        Amount
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                      >
-                        Date
-                      </th>
-                      <th scope="col" className="relative px-6 py-3">
-                        <span className="sr-only">Edit</span>
-                      </th>
-                    </tr>
-                  </thead>
-                  {txs && <TxItems chain={chain} txs={txs} />}
-                </table>
-              </div>
-            </div>
-          </div>
+        <div class="overflow-x-auto">
+          <table class="table w-full table-zebra">
+            <thead>
+              <tr>
+                <th>Transaction</th>
+                <th>Spender</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th></th>
+              </tr>
+            </thead>
+            {txs && <TxItems chain={chain} txs={txs} />}
+          </table>
         </div>
       )}
     </>
@@ -128,7 +93,7 @@ function TxItems({ chain, txs }) {
   const txitems = txs
     .sort((x, y) => y.timeStamp - x.timeStamp)
     .map((tx, i) => <TxItem chain={chain} tx={tx} key={i} />);
-  return <tbody className="bg-white divide-y divide-gray-200">{txitems}</tbody>;
+  return <tbody>{txitems}</tbody>;
 }
 
 function TxItem({ chain, tx }) {
@@ -142,17 +107,26 @@ function TxItem({ chain, tx }) {
     <>
       {!error && decodedInput && (
         <tr>
-          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-blue-400 hover:text-blue-600">
-            <a href={txUrl + tx.hash} target="_blank" title={tx.hash}>
+          <td>
+            <a
+              href={txUrl + tx.hash}
+              target="_blank"
+              title={tx.hash}
+              className="link link-hover"
+            >
               {tx.hash.substring(0, 18) + "..."}
             </a>
           </td>
-          <td className="px-6 py-4 whitespace-nowrap text-sm text-blue-400 hover:text-blue-600">
-            <a href={addressUrl + decodedInput.spender} target="_blank">
+          <td>
+            <a
+              href={addressUrl + decodedInput.spender}
+              target="_blank"
+              className="link link-hover"
+            >
               {decodedInput.spender}
             </a>
           </td>
-          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+          <td>
             {/* if bigint value larger than 2^256-1, show unlimited */}
             {decodedInput.amount > BigInt(0xffffffffffffffffffffffffffffffff)
               ? "unlimited"
@@ -160,19 +134,19 @@ function TxItem({ chain, tx }) {
             <a
               href={addressUrl + tx.to}
               target="_blank"
-              className="text-blue-400 hover:text-blue-600"
+              className="badge badge-info"
               title={tx.to}
             >
               {symbol}
             </a>
           </td>
-          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+          <td>
             {tx.timeStamp ? new Date(tx.timeStamp * 1000).toLocaleString() : ""}
           </td>
-          <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+          <td>
             <a
               href={addressUrl + tx.to + "#writeContract"}
-              className="text-indigo-600 hover:text-indigo-900"
+              className="badge badge-accent"
               target="_blank"
               title="appove spender 0 amount to revoke approval"
             >

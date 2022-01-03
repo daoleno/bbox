@@ -105,7 +105,7 @@ export default function CardList() {
       {files.map((file) => (
         <li key={file.title} className="relative">
           <Link href={file.href}>
-            <div class="card text-center shadow-2xl hover:cursor-pointer">
+            <div class="card text-center shadow-2xl hover:cursor-pointer w-100">
               <div class="px-2 pt-3 md:px-5 md:pt-5">
                 <figure
                   className={`aspect-w-10 aspect-h-7 rounded-xl ${file.bgColor}`}

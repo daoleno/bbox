@@ -102,9 +102,9 @@ export default function Faucet() {
       {faucets.map((f) => (
         <div
           key={f.name}
-          className="relative rounded-lg border bg-white dark:bg-gray-400  border-gray-300 px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
+          className="relative rounded-lg py-5 shadow-md flex items-center space-x-3"
         >
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 ml-3">
             <img className="h-10 w-10 rounded-full" src={f.logo} alt="" />
           </div>
           <div className="flex-1 min-w-0">

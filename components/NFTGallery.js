@@ -5,7 +5,6 @@ import {
   toHttp,
   isVideo,
 } from "../lib/web3";
-import { SearchIcon } from "@heroicons/react/solid";
 import { useRouter } from "next/router";
 import {
   tokensNFTETH,
@@ -14,7 +13,6 @@ import {
   tokensNFTSOL,
 } from "../lib/tokensNFT";
 import Link from "next/link";
-import PopOver from "./Popover";
 import {
   useNFT,
   useSolNFT,
@@ -27,7 +25,6 @@ import Notify from "./Notify";
 import ChainLogo from "./ChainLogo";
 import { Trending, TrendingSimple } from "./Trending";
 import dynamic from "next/dynamic";
-import Image from "./Image";
 
 const onePageNumber = 8;
 const emojis = [
@@ -247,7 +244,7 @@ function NFTCard({ tokenURI, chain, address, index }) {
       <>
         {error && <Notify error={getErrorMessage(error)} />}
         <div class="animate-pulse card text-center shadow-2xl hover:cursor-pointer overflow-visible">
-          <figure class="animate-pulse px-10 pt-10 group block w-full aspect-w-10 aspect-h-10 rounded-lg bg-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden" />
+          <figure class="animate-pulse group block w-full aspect-w-10 aspect-h-10 rounded-lg bg-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden" />
           <div class="card-body flex flex-row">
             <a class="card-title" target="_blank">
               ...
@@ -264,7 +261,7 @@ function NFTCard({ tokenURI, chain, address, index }) {
       <img
         src={toHttp(nft?.image)}
         alt={nft?.name}
-        class="rounded-xl bg-transparent bg-gray-400"
+        class="rounded-xl bg-base-200 object-cover"
       />
     );
 
@@ -273,15 +270,19 @@ function NFTCard({ tokenURI, chain, address, index }) {
       {nft && (
         <>
           <div class="card text-center shadow-2xl hover:cursor-pointer overflow-visible">
-            <figure class="px-10 pt-10 group block w-full aspect-w-10 aspect-h-10 rounded-lg">
+            <figure class="group block w-full aspect-w-10 aspect-h-10 rounded-lg">
               {view}
             </figure>
-            <div class="card-body flex flex-row">
-              <a class="card-title" href={toHttp(nft.image)} target="_blank">
+            <div class="card-body flex flex-row pt-3 pb-0 px-3 md:pt-7 md:pb-3 md:px-10">
+              <a
+                class="card-title text-sm md:text-lg"
+                href={toHttp(nft.image)}
+                target="_blank"
+              >
                 {nft.name}
               </a>
-              <div class="dropdown">
-                <div tabindex="0" class="m-1">
+              <div className="flex flex-row">
+                <label for={nft.name} className="ml-3 hover:cursor-pointer">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-6 w-6"
@@ -296,17 +297,23 @@ function NFTCard({ tokenURI, chain, address, index }) {
                       d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                     />
                   </svg>
-                </div>
-                <div
-                  tabindex="0"
-                  class="p-2 shadow menu dropdown-content bg-base-100 rounded-box text-left"
-                >
-                  <DynamicReactJson
-                    src={nft}
-                    theme="summerfruit:inverted"
-                    displayDataTypes={false}
-                    displayObjectSize={false}
-                  />
+                </label>
+                <input type="checkbox" id={nft.name} class="modal-toggle" />
+                <div class="modal">
+                  <div class="modal-box text-left overflow-scroll">
+                    <DynamicReactJson
+                      src={nft}
+                      displayDataTypes={false}
+                      displayObjectSize={false}
+                      collapsed="1"
+                      name={false}
+                    />
+                    <div class="modal-action">
+                      <label for={nft.name} class="btn">
+                        Close
+                      </label>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
