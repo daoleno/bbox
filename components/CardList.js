@@ -106,11 +106,18 @@ export default function CardList() {
         <li key={file.title} className="relative">
           <Link href={file.href}>
             <div class="card text-center shadow-2xl hover:cursor-pointer">
-              <figure class="px-10 pt-10">
-                <img src={file.source} class="rounded-xl" />
-              </figure>
-              <div class="card-body">
-                <h2 class="card-title"> {file.title}</h2>
+              <div class="px-2 pt-3 md:px-5 md:pt-5">
+                <figure
+                  className={`aspect-w-10 aspect-h-7 rounded-xl ${file.bgColor}`}
+                >
+                  <img
+                    src={file.source}
+                    class="object-cover pointer-events-none group-hover:opacity-75 rounded-xl"
+                  />
+                </figure>
+              </div>
+              <div class="card-body pt-3 pb-1">
+                <h2 class="card-title text-sm md:text-lg"> {file.title}</h2>
               </div>
             </div>
           </Link>
