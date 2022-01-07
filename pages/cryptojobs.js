@@ -13,9 +13,9 @@ const feedUrls = [
   "https://www.cryptojobsdaily.com/?feed=job_feed&sh_atts=job_ad_banners:yes|job_ad_after_list:3|job_ads_group:243433891|job_per_page:15|job_view:view-default|job_excerpt:20|job_order:DESC|job_orderby:date|job_pagination:yes|job_filters:yes|job_filters_loc:yes|job_filters_date:yes|job_filters_type:yes|job_filters_sector:yes|job_custom_fields_switch:no|job_deadline_switch:no|quick_apply_job:no|job_loc_listing:country,city",
 ];
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const feeds = await getAllFeeds(...feedUrls);
-  return { props: { feeds } };
+  return { props: { feeds }, revalidate: 60 * 10 };
 }
 
 async function getAllFeeds(...urls) {

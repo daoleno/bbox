@@ -19,9 +19,9 @@ const feedUrls = [
   // "https://rsshub.app/telegram/channel/DelphiDigitalAlerts",
 ];
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const feeds = await getAllFeeds(...feedUrls);
-  return { props: { feeds } };
+  return { props: { feeds }, revalidate: 60 * 10 };
 }
 
 async function getAllFeeds(...urls) {
