@@ -20,8 +20,13 @@ const faucets = [
     logo: "/logo/ethereum.svg",
   },
   {
-    name: "Rinkeby",
+    name: "Rinkeby 1",
     url: "https://faucets.chain.link/rinkeby",
+    logo: "/logo/ethereum.svg",
+  },
+  {
+    name: "Rinkeby 2",
+    url: "https://www.rinkebyfaucet.com/",
     logo: "/logo/ethereum.svg",
   },
   {
