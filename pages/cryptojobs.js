@@ -1,5 +1,4 @@
-import Parser from "rss-parser";
-
+import { getAllFeeds } from "../lib/feeds";
 import Feeds from "../components/Feeds";
 
 const feedUrls = [
@@ -16,14 +15,6 @@ const feedUrls = [
 export async function getStaticProps() {
   const feeds = await getAllFeeds(...feedUrls);
   return { props: { feeds }, revalidate: 60 * 10 };
-}
-
-async function getAllFeeds(...urls) {
-  const parser = new Parser();
-  const feeds = await Promise.all(
-    urls.map(async (url) => await (await parser.parseURL(url)).items)
-  );
-  return feeds.flat();
 }
 
 export default function CryptoJobs({ feeds }) {
