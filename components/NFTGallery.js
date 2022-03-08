@@ -102,13 +102,13 @@ export default function NFTGallery({ chain }) {
     <>
       {/* {error && <Notify error={getErrorMessage(error)} />} */}
       <div className="flex flex-col">
-        <div class="z-0 flex-1 px-2 py-4 flex flex-wrap items-center justify-center ">
+        <div className="z-0 flex-1 px-2 py-4 flex flex-wrap items-center justify-center ">
           <a href={`/nftgallery/${chain}`} className="label">
             <ChainLogo chain={chain} />
           </a>
           <div className="flex">
             <div className="form-control">
-              <div class="relative">
+              <div className="relative">
                 <input
                   type="text"
                   placeholder={
@@ -116,11 +116,11 @@ export default function NFTGallery({ chain }) {
                       ? "Solscan Collection ID"
                       : "NFT Contract Address"
                   }
-                  class="w-full pr-16 input input-primary input-bordered"
+                  className="w-full pr-16 input input-primary input-bordered"
                   onInput={(e) => setSearchValue(e.target.value)}
                 />
                 <button
-                  class="absolute top-0 right-0 rounded-l-none btn btn-primary"
+                  className="absolute top-0 right-0 rounded-l-none btn btn-primary"
                   onClick={handleFetch}
                 >
                   go
@@ -140,8 +140,10 @@ export default function NFTGallery({ chain }) {
             </div>
           </div>
         </div>
-        {!search && chain != "eth" && <TrendingSimple chain={chain} />}
-        {!search && (chain === "eth" || chain === "sol") && (
+        {!search && chain != "eth" && chain != "bsc" && (
+          <TrendingSimple chain={chain} />
+        )}
+        {!search && (chain === "eth" || chain == "bsc" || chain === "sol") && (
           <Trending chain={chain} />
         )}
 
@@ -243,10 +245,10 @@ function NFTCard({ tokenURI, chain, address, index }) {
     return (
       <>
         {error && <Notify error={getErrorMessage(error)} />}
-        <div class="animate-pulse card text-center shadow-2xl hover:cursor-pointer overflow-visible">
-          <figure class="animate-pulse group block w-full aspect-w-10 aspect-h-10 rounded-lg bg-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden" />
-          <div class="card-body flex flex-row">
-            <a class="card-title" target="_blank">
+        <div className="animate-pulse card text-center shadow-2xl hover:cursor-pointer overflow-visible">
+          <figure className="animate-pulse group block w-full aspect-w-10 aspect-h-10 rounded-lg bg-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden" />
+          <div className="card-body flex flex-row">
+            <a className="card-title" target="_blank">
               ...
             </a>
           </div>
@@ -256,12 +258,18 @@ function NFTCard({ tokenURI, chain, address, index }) {
 
   const view =
     isVideo(nft?.image) || contentType?.includes("video") ? (
-      <video class="rounded-xl" src={toHttp(nft?.image)} autoPlay loop muted />
+      <video
+        className="rounded-xl"
+        src={toHttp(nft?.image)}
+        autoPlay
+        loop
+        muted
+      />
     ) : (
       <img
         src={toHttp(nft?.image)}
         alt={nft?.name}
-        class="rounded-xl bg-base-200 object-cover"
+        className="rounded-xl bg-base-200 object-cover"
       />
     );
 
@@ -269,13 +277,13 @@ function NFTCard({ tokenURI, chain, address, index }) {
     <>
       {nft && (
         <>
-          <div class="card text-center shadow-2xl hover:cursor-pointer overflow-visible">
-            <figure class="group block w-full aspect-w-10 aspect-h-10 rounded-lg">
+          <div className="card text-center shadow-2xl hover:cursor-pointer overflow-visible">
+            <figure className="group block w-full aspect-w-10 aspect-h-10 rounded-lg">
               {view}
             </figure>
-            <div class="card-body flex flex-row pt-3 pb-0 px-3 md:pt-7 md:pb-3 md:px-10">
+            <div className="card-body flex flex-row pt-3 pb-0 px-3 md:pt-7 md:pb-3 md:px-10">
               <a
-                class="card-title text-sm md:text-lg"
+                className="card-title text-sm md:text-lg"
                 href={toHttp(nft.image)}
                 target="_blank"
               >
@@ -298,9 +306,9 @@ function NFTCard({ tokenURI, chain, address, index }) {
                     />
                   </svg>
                 </label>
-                <input type="checkbox" id={nft.name} class="modal-toggle" />
-                <div class="modal">
-                  <div class="modal-box text-left overflow-scroll">
+                <input type="checkbox" id={nft.name} className="modal-toggle" />
+                <div className="modal">
+                  <div className="modal-box text-left overflow-scroll">
                     <DynamicReactJson
                       src={nft}
                       displayDataTypes={false}
@@ -308,8 +316,8 @@ function NFTCard({ tokenURI, chain, address, index }) {
                       collapsed="1"
                       name={false}
                     />
-                    <div class="modal-action">
-                      <label for={nft.name} class="btn">
+                    <div className="modal-action">
+                      <label for={nft.name} className="btn">
                         Close
                       </label>
                     </div>

@@ -65,13 +65,13 @@ export default function NFTStorage() {
           </label>
           <input
             type="text"
-            class="input input-bordered"
+            className="input input-bordered"
             onChange={handleChange}
           />
           <label className="label">Description</label>
           <input
             type="text"
-            class="input input-bordered"
+            className="input input-bordered"
             onChange={handleChange}
           />
         </div>

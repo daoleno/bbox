@@ -51,24 +51,24 @@ function Issue() {
       {error && (
         <Notify key={new Date().getTime()} error={getErrorMessage(error)} />
       )}
-      <div class="form-control">
-        <label class="label block uppercase text-center font-bold mb-4">
+      <div className="form-control">
+        <label className="label block uppercase text-center font-bold mb-4">
           Issue ERC721 Token
         </label>
-        <label class="label">
-          <span class="label-text">Token Name</span>
+        <label className="label">
+          <span className="label-text">Token Name</span>
         </label>
         <input
           type="text"
-          class="input input-bordered"
+          className="input input-bordered"
           onChange={handleChange}
         />
-        <label class="label">
-          <span class="label-text">Token Symbol</span>
+        <label className="label">
+          <span className="label-text">Token Symbol</span>
         </label>
         <input
           type="text"
-          class="input input-bordered"
+          className="input input-bordered"
           onChange={handleChange}
         />
         <div className="flex justify-center -mx-3 mt-6">

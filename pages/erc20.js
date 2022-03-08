@@ -51,32 +51,32 @@ function Issue() {
     <div className="w-full max-w-xs mx-auto sm:mt-20">
       {error && <Notify error={getErrorMessage(error)} />}
 
-      <div class="form-control">
-        <label class="label block uppercase text-center font-bold mb-4">
+      <div className="form-control">
+        <label className="label block uppercase text-center font-bold mb-4">
           Issue ERC20 Token
         </label>
-        <span class="label label-text">Token Name</span>
+        <span className="label label-text">Token Name</span>
         <input
           type="text"
-          class="input input-bordered"
+          className="input input-bordered"
           onChange={handleChange}
         />
-        <span class="label label-text">Token Symbol</span>
+        <span className="label label-text">Token Symbol</span>
         <input
           type="text"
-          class="input input-bordered"
+          className="input input-bordered"
           onChange={handleChange}
         />
-        <span class="label label-text">Total Supply</span>
+        <span className="label label-text">Total Supply</span>
         <input
           type="text"
-          class="input input-bordered"
+          className="input input-bordered"
           onChange={handleChange}
         />
-        <span class="label label-text">Decimal</span>
+        <span className="label label-text">Decimal</span>
         <input
           type="text"
-          class="input input-bordered"
+          className="input input-bordered"
           onChange={handleChange}
         />
         <div className="flex justify-center -mx-3 mt-6">

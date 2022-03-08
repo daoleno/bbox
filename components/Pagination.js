@@ -65,10 +65,10 @@ export default function Pagination({
     //     </a>
     //   </div>
     // </nav>
-    <div class="btn-group flex self-center mt-10">
+    <div className="btn-group flex self-center mt-10">
       <a
         href={`?search=${searchValue}&token_id=${fetchIndex - onePageNumber}`}
-        class="btn btn-outline lg:btn-wide"
+        className="btn btn-outline lg:btn-wide"
       >
         <ArrowNarrowLeftIcon
           className="mr-3 h-5 w-5 text-gray-400"
@@ -78,7 +78,7 @@ export default function Pagination({
       </a>
       <a
         href={`?search=${searchValue}&token_id=${fetchIndex + onePageNumber}`}
-        class="btn btn-outline lg:btn-wide"
+        className="btn btn-outline lg:btn-wide"
       >
         Next
         <ArrowNarrowRightIcon

@@ -28,15 +28,15 @@ export default function Approved({ chain }) {
           <ChainLogo chain={chain} />
         </a>
         <div className="relative flex flex-row">
-          <div class="relative">
+          <div className="relative">
             <input
               type="text"
               placeholder="Address"
-              class="w-full pr-16 input input-primary input-bordered"
+              className="w-full pr-16 input input-primary input-bordered"
               onInput={(e) => setAddress(e.target.value)}
             />
             <button
-              class="absolute top-0 right-0 rounded-l-none btn btn-primary"
+              className="absolute top-0 right-0 rounded-l-none btn btn-primary"
               onClick={handleFetch}
             >
               go
@@ -70,8 +70,8 @@ export default function Approved({ chain }) {
       )}
 
       {txs.length > 0 && (
-        <div class="overflow-x-auto">
-          <table class="table w-full table-zebra">
+        <div className="overflow-x-auto">
+          <table className="table w-full table-zebra">
             <thead>
               <tr>
                 <th>Transaction</th>

@@ -45,7 +45,10 @@ export default function Feeds({ feeds, title, href }) {
       <NewsPage items={items} pageno={pageNumber} />
       <button
         className="font-semibold ml-12 mr-4 mt-3"
-        onClick={() => setPageNumber(pageNumber + 1)}
+        onClick={() => {
+          setPageNumber(pageNumber + 1);
+          window.scrollTo(0, 0);
+        }}
       >
         More
       </button>

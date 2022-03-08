@@ -8,6 +8,12 @@ const files = [
     source: "/cryptonews.svg",
     href: "/cryptonews",
   },
+  // {
+  //   title: "Crypto Dev",
+  //   bgColor: "bg-yellow-300",
+  //   source: "/cryptodev.svg",
+  //   href: "/cryptodev",
+  // },
   {
     title: "Crypto Jobs",
     bgColor: "bg-sky-300",
@@ -105,19 +111,19 @@ export default function CardList() {
       {files.map((file) => (
         <li key={file.title} className="relative">
           <Link href={file.href}>
-            <div class="card text-center shadow-2xl hover:cursor-pointer w-100">
-              <div class="px-2 pt-3 md:px-5 md:pt-5">
+            <div className="card text-center shadow-2xl hover:cursor-pointer w-100">
+              <div className="px-2 pt-3 md:px-5 md:pt-5">
                 <figure
                   className={`aspect-w-10 aspect-h-7 rounded-xl ${file.bgColor}`}
                 >
                   <img
                     src={file.source}
-                    class="object-cover pointer-events-none group-hover:opacity-75 rounded-xl"
+                    className="object-cover pointer-events-none group-hover:opacity-75 rounded-xl"
                   />
                 </figure>
               </div>
-              <div class="card-body pt-3 pb-1">
-                <h2 class="card-title text-sm md:text-lg"> {file.title}</h2>
+              <div className="card-body pt-3 pb-1">
+                <h2 className="card-title text-sm md:text-lg"> {file.title}</h2>
               </div>
             </div>
           </Link>

@@ -57,7 +57,7 @@ export function Trending({ chain }) {
           </div>
 
           <div className="overflow-x-auto">
-            <table class="table w-full table-compact">
+            <table className="table w-full table-compact">
               <thead>
                 <tr>
                   <th>Collection</th>
@@ -68,16 +68,16 @@ export function Trending({ chain }) {
               </thead>
               <tbody>
                 {topNFTs.map((nft) => (
-                  <tr key={nft.address} class="hover">
+                  <tr key={nft.address} className="hover">
                     <td>
                       <a
-                        class="flex items-center space-x-3"
+                        className="flex items-center space-x-3"
                         href={`/nftgallery/${chain}?search=${
                           nft.nft_address || nft?.data?.collectionId
                         }`}
                       >
-                        <div class="avatar">
-                          <div class="w-12 h-12 mask mask-squircle">
+                        <div className="avatar">
+                          <div className="w-12 h-12 mask mask-squircle">
                             <img
                               src={nft.image || nft?.data?.avatar}
                               alt={nft.nft_platform || nft?.data?.collection}
@@ -85,7 +85,7 @@ export function Trending({ chain }) {
                           </div>
                         </div>
                         <div>
-                          <div class="font-bold">
+                          <div className="font-bold">
                             {nft.nft_platform || nft?.data?.collection}
                           </div>
                         </div>
@@ -162,7 +162,7 @@ export function TrendingSimple({ chain }) {
             </a>
           </div>
           <div className="overflow-x-auto">
-            <table class="table w-full table-compact">
+            <table className="table w-full table-compact">
               <thead>
                 <tr>
                   <th>Collection</th>
@@ -171,7 +171,7 @@ export function TrendingSimple({ chain }) {
               </thead>
               <tbody>
                 {tokensNFT.map((nft) => (
-                  <tr key={nft.address} class="hover">
+                  <tr key={nft.address} className="hover">
                     <td>
                       <a
                         href={`/nftgallery/${chain}?search=${nft.address}`}

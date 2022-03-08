@@ -72,11 +72,13 @@ export default function Stats({ chain }) {
         </div>
         <div className="w-full shadow stats mt-5">
           {stats.map((item) => (
-            <div class="stat">
-              <div class="stat-figure text-info ml-3 md:ml-0">{item.icon}</div>
-              <div class="stat-title">{item.name}</div>
-              <div class={`stat-value ${item.color}`}>{item.stat} GWei</div>
-              <div class="stat-desc">{item.usd}</div>
+            <div className="stat">
+              <div className="stat-figure text-info ml-3 md:ml-0">
+                {item.icon}
+              </div>
+              <div className="stat-title">{item.name}</div>
+              <div className={`stat-value ${item.color}`}>{item.stat} GWei</div>
+              <div className="stat-desc">{item.usd}</div>
             </div>
           ))}
         </div>
