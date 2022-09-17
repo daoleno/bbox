@@ -97,6 +97,12 @@ const files = [
     source: "/tokeninfo.png",
     href: "/tokeninfo",
   },
+  {
+    title: "Hex to Number",
+    bgColor: "bg-blue-300",
+    source: "/hextonumber.png",
+    href: "/hextonumber",
+  },
   // {
   //   title: "Issue Token On Solana",
   //   bgColor: "bg-green-0",
