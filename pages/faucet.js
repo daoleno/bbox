@@ -5,31 +5,6 @@ const faucets = [
     logo: "/logo/ethereum.svg",
   },
   {
-    name: "Ropsten 1",
-    url: "https://faucet.metamask.io/",
-    logo: "/logo/ethereum.svg",
-  },
-  {
-    name: "Ropsten 2",
-    url: "https://faucet.egorfine.com/",
-    logo: "/logo/ethereum.svg",
-  },
-  {
-    name: "Kovan",
-    url: "https://gitter.im/kovan-testnet/faucet#",
-    logo: "/logo/ethereum.svg",
-  },
-  {
-    name: "Rinkeby 1",
-    url: "https://faucets.chain.link/rinkeby",
-    logo: "/logo/ethereum.svg",
-  },
-  {
-    name: "Rinkeby 2",
-    url: "https://www.rinkebyfaucet.com/",
-    logo: "/logo/ethereum.svg",
-  },
-  {
     name: "Goerli 1",
     url: "https://faucet.goerli.mudit.blog/",
     logo: "/logo/ethereum.svg",
@@ -37,6 +12,16 @@ const faucets = [
   {
     name: "Goerli 2",
     url: "https://faucets.chain.link/goerli",
+    logo: "/logo/ethereum.svg",
+  },
+  {
+    name: "Sepolia 1",
+    url: "https://faucet-sepolia.rockx.com/",
+    logo: "/logo/ethereum.svg",
+  },
+  {
+    name: "Sepolia 2",
+    url: "https://faucet.sepolia.dev/",
     logo: "/logo/ethereum.svg",
   },
   {
