@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 
 const files = [
   {
@@ -91,6 +90,12 @@ const files = [
     bgColor: "bg-sky-100",
     source: "/faucet.svg",
     href: "/faucet",
+  },
+  {
+    title: "Token Info",
+    bgColor: "bg-blue-300",
+    source: "/tokeninfo.png",
+    href: "/tokeninfo",
   },
   // {
   //   title: "Issue Token On Solana",
